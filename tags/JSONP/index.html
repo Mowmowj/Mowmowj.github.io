@@ -346,33 +346,29 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/21/%E5%B0%9D%E8%AF%95Node.js%E5%86%99%E8%84%9A%E6%9C%AC/" >
+        <a class="abstract-title" href = "/2020/02/29/JSONP%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" >
             
-                <span>用Node.js写脚本</span>
+                <span>浅谈JSONP的前世今生</span>
         </a>
         <div class="abstract-content">
-            Node.js常用命令
-切盘: process chdir(‘    ‘)
-当前绝对路径: process.cwd(‘    ‘)
- 文件有关fs = files system
-var fs = requir(‘fs’)
-创建目录: fs.mkdirSync(‘    ‘)
-改权限:fs.chod(‘    ‘)
-fs.writeFileSync(‘     ‘)
-node.js 写脚本 var fs = require(&#39;fs&#39;)  
-var dirName = process.argv[2] 
-fs.mkdirSync(&quot;./&quot; + dirName...
+            JSONP的前世今生在没有jsonp 的时候 由于点击提交会刷新页面前端程序员一开始使用 iframe ,后来发现还可以使用a、form标签但是不够优雅还是会刷新页面或者新打开页面 直到后来有程序员尝试用script  来发请求、完成跨域请求操作. (都只能用get方法)这就是:
+jsonp:                {padding+json+padding}
+请求方:前端 浏览器
+响应方:后端  服务器
+请求创建script src 指向响应方,同时传查询参数 
+?callbackName=随机数    (一般规定 叫callback或者jQuery_callback)
+响应方...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/21</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/29</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Node.js">Node.js</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JSONP">JSONP</a>
     
 </div>
             

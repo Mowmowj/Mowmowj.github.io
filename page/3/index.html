@@ -78,8 +78,6 @@
     <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
     
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -203,8 +201,10 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="home-body">
     
-<header class="header">
+    
+<header class="header index-header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
@@ -220,21 +220,34 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            tongigles's Studio.
+            <!-- 文章页  -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
+            
+            
+                your are the CSS of my HTML.
+            
+            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
@@ -346,33 +359,77 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/21/%E5%B0%9D%E8%AF%95Node.js%E5%86%99%E8%84%9A%E6%9C%AC/" >
+        <a class="abstract-title" href = "/2019/05/03/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%8B%E5%86%8C/" >
             
-                <span>用Node.js写脚本</span>
+                <span>正则表达式手册</span>
         </a>
         <div class="abstract-content">
-            Node.js常用命令
-切盘: process chdir(‘    ‘)
-当前绝对路径: process.cwd(‘    ‘)
- 文件有关fs = files system
-var fs = requir(‘fs’)
-创建目录: fs.mkdirSync(‘    ‘)
-改权限:fs.chod(‘    ‘)
-fs.writeFileSync(‘     ‘)
-node.js 写脚本 var fs = require(&#39;fs&#39;)  
-var dirName = process.argv[2] 
-fs.mkdirSync(&quot;./&quot; + dirName...
+            正则表达式正则表达式用于定义一些字符串的规则，
+计算机可以根据正则表达式，来检查一个字符串是否符合规则，
+获取将字符串中符合规则的内容提取出来.
+正则表达式语法方法一:    创建正则表达式   (优点 : 更加灵活)var 变量 = new RegExp(“正则表达式”,”匹配模式”);
+匹配模式
+1.忽略大小写 i
+2.全局匹配模式 g
+e.g.
+var r= new RegExp(“a”);//定义规则
+方法二:    字面量创建正则表达式    (优点 : 更加方便)var 变量 = /正则表达式/匹配模式
+变量 = /正则表达式/匹配模式
+test()方法符合返回true 不符...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/21</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/03</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Node.js">Node.js</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "正则表达式">正则表达式</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/04/12/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87/" >
+            
+                <span>JavaSE重点笔记</span>
+        </a>
+        <div class="abstract-content">
+            
+This关键字概念this是java 关键字 意思：这个
+this是一个引用
+this是一个变量
+this保存了内存地址指向了自身
+this 保存在JVM堆内存中
+this应用在两个位置构造方法当中
+实例方法当中
+（在静态方法种无法使用this（因为没有对象的参与，静态方法是采用类名的方式调用）所以在静态方法中无法直接使用this
+在实例方法中可以用，因为调用实例方法的时候调用了对象。
+语法位于构造方法中第一行
+this（）通过当前的构造方法调用别的构造方法代码可以得到重复使用
+this.  主要用在实例方法中用以区分局部变量和实例变量，比如下面：
+int id 
+this id = ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaSE">JavaSE</a>
     
 </div>
             
@@ -381,8 +438,105 @@ fs.mkdirSync(&quot;./&quot; + dirName...
     
     <!-- paginator  -->
     
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/page/2/">&amp;#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
+    
 </main>
             <!-- profile -->
+            
+            <div class="profile">
+    <img class="profile-avatar" alt="avatar" src= /avatar/liver.jpg >
+    <div class="profile-name">SheltonZ</div>
+    
+    <div class="profile-signature">
+        witness me
+    </div>
+    
+    
+    <div class="profile-social">
+        
+    
+        
+            
+                <a href="mailto:tongigle@icloud.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/Mowmowj" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    
+        <div class="friends">
+            <div>FRIENDS</div>
+            
+                
+            
+                
+                    <span>
+                        <a href= //www.google.com target="_black">friendB</a>
+                    </span>
+                
+            
+                
+            
+        </div>
+    
+    
+        <div class="about-me">
+            <a href = "/about" >ABOUT ME</a>
+        </div>
+    
+</div>
             
         </div>
         <footer class="footer footer-unloaded">

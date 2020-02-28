@@ -346,6 +346,107 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/29/JSONP%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" >
+            
+                <span>浅谈JSONP的前世今生</span>
+        </a>
+        <div class="abstract-content">
+            JSONP的前世今生在没有jsonp 的时候 由于点击提交会刷新页面前端程序员一开始使用 iframe ,后来发现还可以使用a、form标签但是不够优雅还是会刷新页面或者新打开页面 直到后来有程序员尝试用script  来发请求、完成跨域请求操作. (都只能用get方法)这就是:
+jsonp:                {padding+json+padding}
+请求方:前端 浏览器
+响应方:后端  服务器
+请求创建script src 指向响应方,同时传查询参数 
+?callbackName=随机数    (一般规定 叫callback或者jQuery_callback)
+响应方...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JSONP">JSONP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/29/%E6%89%8B%E6%92%95AJAX/" >
+            
+                <span>手撕AJAX</span>
+        </a>
+        <div class="abstract-content">
+            手撕AJAXAJAXAsysnc+Javasript+And+XML
+script可以发送get请求,但是只能以脚本的形式运行.
+直到IE5率先在JS中引入ActiveX对象,让JS可直接发起HTTP请求.随后Mozilla、Safari、Opera也跟进了取名叫 XMLHttpRequest,并被纳入W3C规范
+ajax可以实现 get post put delete请求
+并以任何形式展示
+12345AJAX 将如下的技术取名叫AJAX :异步的JavaScript 和XML1. 使用XMLHttpRequest发请求2. 服务器返回XML格式的字符串3. JS解析XML.并更新局部页...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "ajax">ajax</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/29/%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B(%E7%A9%B6%E6%9E%81%E8%AF%A6%E7%BB%86%E7%89%88)/" >
+            
+                <span>一次完整的HTTP请求经历了哪些?究极详细版</span>
+        </a>
+        <div class="abstract-content">
+            1.生物过程​       电脑上的光反射到视网膜,将光信号转化神经信号,传给大脑,大脑处理后,经过脊髓神经给手指下命令,按回车.
+2.计算机原理过程​     键盘被按下后,产生硬件中断信号,键盘发送脉冲给主机,主机里面的操作系统会接收到信号的变化,操作系统分析中断编号是什么按键啊?发现是回车键. 回车的命令传入到浏览器触发按键事件,浏览器收到,浏览器根据域名发出域名解析请求.
+2.解析过程​        首先会搜索浏览器自身的dns缓存 这里我使用的Chrome查询方法是:chrome://net-internals/#hsts 
+没有或过期则去操作系统中找DNS缓存 命令行:ip...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HTTP">HTTP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/02/04/COVID-19%E7%96%AB%E6%83%85%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9C%B0%E5%9B%BE%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" >
             
                 <span>COVID-19疫情大数据可视化地图项目总结</span>
@@ -609,138 +710,10 @@ postcurl -X POST -d “password” -s -v -H “tong: zhizhang” –...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/21/%E5%B0%9D%E8%AF%95Node.js%E5%86%99%E8%84%9A%E6%9C%AC/" >
-            
-                <span>用Node.js写脚本</span>
-        </a>
-        <div class="abstract-content">
-            Node.js常用命令
-切盘: process chdir(‘    ‘)
-当前绝对路径: process.cwd(‘    ‘)
- 文件有关fs = files system
-var fs = requir(‘fs’)
-创建目录: fs.mkdirSync(‘    ‘)
-改权限:fs.chod(‘    ‘)
-fs.writeFileSync(‘     ‘)
-node.js 写脚本 var fs = require(&#39;fs&#39;)  
-var dirName = process.argv[2] 
-fs.mkdirSync(&quot;./&quot; + dirName...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Node.js">Node.js</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/20/shell%E8%84%9A%E6%9C%AC%E4%B8%80%E9%94%AE%E7%94%9F%E6%88%90%E5%89%8D%E7%AB%AF%E6%96%87%E4%BB%B6/" >
-            
-                <span>shell脚本一键生成前端文件</span>
-        </a>
-        <div class="abstract-content">
-            作为一个程序员如果不会写脚本那么和搬砖有什么区别?
-细节Path作用
-我们在bash中输入一个命令时(ls\cp\demo)
-bash都会自动去$PATH中寻找对应的脚本文件
-如果找到了就执行
-使用type +命令
-可以查看寻找过程
-文件后缀其实对于机器毫无作用 只是为了双击的时候 指定用什么来打开
-不过可以方便查看属性
-linux中 可以指定打开
-vi 用vim打开
-open -a “google chrome” 路径  用谷歌打开
-最简单的小脚本
-touch demo.sh
-vi demo.sh
-vim:mkdir demo
-cd demo
-mkdir css jss
-touch i...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "shell">shell</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/19/JavaScript%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/" >
-            
-                <span>JavaScript笔记整理</span>
-        </a>
-        <div class="abstract-content">
-            基本语法强制类型转换转化为String类型方法一: 使用toString()方法
-
-null和undefined不能使用该方法
-toString()方法不会改变原变量
-
-方法二: 使用string()函数
-
-可以使用null和undefined
-将null和undefined转换为”null”和”undefined”
-对于number和boolean类型来说调用的还是toString()
-
-1234var a =520; a=a.toString();console.log(typeof a);console.log(a);
-
-转换为number类型方式一:使用Number()函数   ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &amp;#62;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &amp;#62;</a>
     </nav>
     
 </main>
@@ -1057,9 +1030,52 @@ toString()方法不会改变原变量
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 19
+        Total : 22
         </div>
         <!-- search  -->
         
@@ -1072,6 +1088,21 @@ toString()方法不会改变原变量
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/29</span><a class="archive-post-title" href= "/2020/02/29/%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B(%E7%A9%B6%E6%9E%81%E8%AF%A6%E7%BB%86%E7%89%88)/" >一次完整的HTTP请求经历了哪些?究极详细版</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/29</span><a class="archive-post-title" href= "/2020/02/29/JSONP%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" >浅谈JSONP的前世今生</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/29</span><a class="archive-post-title" href= "/2020/02/29/%E6%89%8B%E6%92%95AJAX/" >手撕AJAX</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1206,6 +1237,10 @@ toString()方法不会改变原变量
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
+        <span class="sidebar-tag-name" data-tags="HTTP"><span class="iconfont-archer">&#xe606;</span>HTTP</span>
+    
+        <span class="sidebar-tag-name" data-tags="JSONP"><span class="iconfont-archer">&#xe606;</span>JSONP</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1252,6 +1287,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="命令行"><span class="iconfont-archer">&#xe60a;</span>命令行</span>
     
         <span class="sidebar-category-name" data-categories="Node-js"><span class="iconfont-archer">&#xe60a;</span>Node-js</span>
+    
+        <span class="sidebar-category-name" data-categories="HTTP"><span class="iconfont-archer">&#xe60a;</span>HTTP</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

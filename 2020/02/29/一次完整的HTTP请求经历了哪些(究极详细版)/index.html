@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>SheltonZhang&#39;s Studio</title>
+    <title>一次完整的HTTP请求经历了哪些?究极详细版 · SheltonZhang&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >tongigles&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">一次完整的HTTP请求经历了哪些?究极详细版</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>tongigles's Studio.</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            一次完整的HTTP请求经历了哪些?究极详细版
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HTTP">HTTP</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">450</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/02/29</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,49 +399,61 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/21/%E5%B0%9D%E8%AF%95Node.js%E5%86%99%E8%84%9A%E6%9C%AC/" >
-            
-                <span>用Node.js写脚本</span>
-        </a>
-        <div class="abstract-content">
-            Node.js常用命令
-切盘: process chdir(‘    ‘)
-当前绝对路径: process.cwd(‘    ‘)
- 文件有关fs = files system
-var fs = requir(‘fs’)
-创建目录: fs.mkdirSync(‘    ‘)
-改权限:fs.chod(‘    ‘)
-fs.writeFileSync(‘     ‘)
-node.js 写脚本 var fs = require(&#39;fs&#39;)  
-var dirName = process.argv[2] 
-fs.mkdirSync(&quot;./&quot; + dirName...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Node.js">Node.js</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h3 id="1-生物过程"><a href="#1-生物过程" class="headerlink" title="1.生物过程"></a>1.生物过程</h3><p>​       电脑上的光反射到视网膜,将光信号转化神经信号,传给大脑,大脑处理后,经过脊髓神经给手指下命令,按回车.</p>
+<h3 id="2-计算机原理过程"><a href="#2-计算机原理过程" class="headerlink" title="2.计算机原理过程"></a>2.计算机原理过程</h3><p>​     键盘被按下后,产生硬件中断信号,键盘发送脉冲给主机,主机里面的操作系统会接收到信号的变化,操作系统分析中断编号是什么按键啊?发现是回车键. 回车的命令传入到浏览器触发按键事件,浏览器收到,浏览器根据域名发出域名解析请求.</p>
+<h3 id="2-解析过程"><a href="#2-解析过程" class="headerlink" title="2.解析过程"></a>2.解析过程</h3><p>​        首先会搜索浏览器自身的dns缓存 这里我使用的Chrome查询方法是:<a href="chrome://net-internals/#hsts">chrome://net-internals/#hsts</a> </p>
+<p>没有或过期则去操作系统中找DNS缓存 命令行:ipconfig/displaydns</p>
+<p>没有或过期贼去本地hosts文件找路径c:/windows/system32/drivers/etc</p>
+<p>/HOSTS</p>
+<p>还没有就去让操作系统发起DNS调用,去向本地配置的首选DNS服务器发域名解析请求,dns服务器在自身查找缓存,没有或过期则发起迭代dns解析请求,先向根域的dns服务器找ip,根域就把.com的dns[返回,首选dns服务器继续问.com的dns.  <a href="http://www.google.com的ip呢?.com" target="_blank" rel="noopener">www.google.com的ip呢?.com</a> dns说我我知道但是我知道google.com的dns然后就去google.com</p>
+<p>根域dns看他死赖着说我帮你找,然后就去向二级域名google.com的注册商要ip,这时候二级域名dns一查,真的是我这里注册的域名啊,然后就返回ip给首选dns服务器,并返回给我们的系统内核,内核又把结果返回给浏览器,终于有了<a href="http://www.google.com的对应ip地址.完成解析" target="_blank" rel="noopener">www.google.com的对应ip地址.完成解析</a></p>
+
     </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>Author：<a href="http://yoursite.com">zhang zhitong</a>
+            <p>原文链接：<a href="http://yoursite.com/2020/02/29/%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B(%E7%A9%B6%E6%9E%81%E8%AF%A6%E7%BB%86%E7%89%88)/">http://yoursite.com/2020/02/29/%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B(%E7%A9%B6%E6%9E%81%E8%AF%A6%E7%BB%86%E7%89%88)/</a>
+            <p>发表日期：<a href="http://yoursite.com/2020/02/29/%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B(%E7%A9%B6%E6%9E%81%E8%AF%A6%E7%BB%86%E7%89%88)/">February 29th 2020, 1:05:22 am</a>
+            <p>更新日期：<a href="http://yoursite.com/2020/02/29/%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B(%E7%A9%B6%E6%9E%81%E8%AF%A6%E7%BB%86%E7%89%88)/">February 29th 2020, 1:05:22 am</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2020/02/29/%E6%89%8B%E6%92%95AJAX/" title= "手撕AJAX">
+                    <div class="nextTitle">手撕AJAX</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/02/04/COVID-19%E7%96%AB%E6%83%85%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9C%B0%E5%9B%BE%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" title= "COVID-19疫情大数据可视化地图项目总结">
+                    <div class="prevTitle">COVID-19疫情大数据可视化地图项目总结</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -465,6 +538,24 @@ fs.mkdirSync(&quot;./&quot; + dirName...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-生物过程"><span class="toc-number">1.</span> <span class="toc-text">1.生物过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-计算机原理过程"><span class="toc-number">2.</span> <span class="toc-text">2.计算机原理过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-解析过程"><span class="toc-number">3.</span> <span class="toc-text">2.解析过程</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -987,6 +1078,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

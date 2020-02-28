@@ -359,6 +359,134 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/06/21/%E5%B0%9D%E8%AF%95Node.js%E5%86%99%E8%84%9A%E6%9C%AC/" >
+            
+                <span>用Node.js写脚本</span>
+        </a>
+        <div class="abstract-content">
+            Node.js常用命令
+切盘: process chdir(‘    ‘)
+当前绝对路径: process.cwd(‘    ‘)
+ 文件有关fs = files system
+var fs = requir(‘fs’)
+创建目录: fs.mkdirSync(‘    ‘)
+改权限:fs.chod(‘    ‘)
+fs.writeFileSync(‘     ‘)
+node.js 写脚本 var fs = require(&#39;fs&#39;)  
+var dirName = process.argv[2] 
+fs.mkdirSync(&quot;./&quot; + dirName...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/21</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Node.js">Node.js</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/06/20/shell%E8%84%9A%E6%9C%AC%E4%B8%80%E9%94%AE%E7%94%9F%E6%88%90%E5%89%8D%E7%AB%AF%E6%96%87%E4%BB%B6/" >
+            
+                <span>shell脚本一键生成前端文件</span>
+        </a>
+        <div class="abstract-content">
+            作为一个程序员如果不会写脚本那么和搬砖有什么区别?
+细节Path作用
+我们在bash中输入一个命令时(ls\cp\demo)
+bash都会自动去$PATH中寻找对应的脚本文件
+如果找到了就执行
+使用type +命令
+可以查看寻找过程
+文件后缀其实对于机器毫无作用 只是为了双击的时候 指定用什么来打开
+不过可以方便查看属性
+linux中 可以指定打开
+vi 用vim打开
+open -a “google chrome” 路径  用谷歌打开
+最简单的小脚本
+touch demo.sh
+vi demo.sh
+vim:mkdir demo
+cd demo
+mkdir css jss
+touch i...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "shell">shell</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/06/19/JavaScript%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/" >
+            
+                <span>JavaScript笔记整理</span>
+        </a>
+        <div class="abstract-content">
+            基本语法强制类型转换转化为String类型方法一: 使用toString()方法
+
+null和undefined不能使用该方法
+toString()方法不会改变原变量
+
+方法二: 使用string()函数
+
+可以使用null和undefined
+将null和undefined转换为”null”和”undefined”
+对于number和boolean类型来说调用的还是toString()
+
+1234var a =520; a=a.toString();console.log(typeof a);console.log(a);
+
+转换为number类型方式一:使用Number()函数   ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/06/13/JS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%20GC/" >
             
                 <span>JS垃圾回收机制 GC</span>
@@ -606,93 +734,10 @@ display: block; }为html 添加新元素1234567891011121314151617181920212223242
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/05/03/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%8B%E5%86%8C/" >
-            
-                <span>正则表达式手册</span>
-        </a>
-        <div class="abstract-content">
-            正则表达式正则表达式用于定义一些字符串的规则，
-计算机可以根据正则表达式，来检查一个字符串是否符合规则，
-获取将字符串中符合规则的内容提取出来.
-正则表达式语法方法一:    创建正则表达式   (优点 : 更加灵活)var 变量 = new RegExp(“正则表达式”,”匹配模式”);
-匹配模式
-1.忽略大小写 i
-2.全局匹配模式 g
-e.g.
-var r= new RegExp(“a”);//定义规则
-方法二:    字面量创建正则表达式    (优点 : 更加方便)var 变量 = /正则表达式/匹配模式
-变量 = /正则表达式/匹配模式
-test()方法符合返回true 不符...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "正则表达式">正则表达式</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/04/12/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87/" >
-            
-                <span>JavaSE重点笔记</span>
-        </a>
-        <div class="abstract-content">
-            
-This关键字概念this是java 关键字 意思：这个
-this是一个引用
-this是一个变量
-this保存了内存地址指向了自身
-this 保存在JVM堆内存中
-this应用在两个位置构造方法当中
-实例方法当中
-（在静态方法种无法使用this（因为没有对象的参与，静态方法是采用类名的方式调用）所以在静态方法中无法直接使用this
-在实例方法中可以用，因为调用实例方法的时候调用了对象。
-语法位于构造方法中第一行
-this（）通过当前的构造方法调用别的构造方法代码可以得到重复使用
-this.  主要用在实例方法中用以区分局部变量和实例变量，比如下面：
-int id 
-this id = ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaSE">JavaSE</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/">&amp;#60; PREV</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+        <a class="extend prev" rel="prev" href="/">&amp;#60; PREV</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">NEXT &amp;#62;</a>
     </nav>
     
 </main>
@@ -772,10 +817,6 @@ this id = ...
         <div class="friends">
             <div>FRIENDS</div>
             
-                
-                    <span>
-                        <a href= //www.baidu.com target="_black">friendA</a>
-                    </span>
                 
             
                 
@@ -1106,9 +1147,52 @@ this id = ...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 19
+        Total : 22
         </div>
         <!-- search  -->
         
@@ -1121,6 +1205,21 @@ this id = ...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/29</span><a class="archive-post-title" href= "/2020/02/29/%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B(%E7%A9%B6%E6%9E%81%E8%AF%A6%E7%BB%86%E7%89%88)/" >一次完整的HTTP请求经历了哪些?究极详细版</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/29</span><a class="archive-post-title" href= "/2020/02/29/JSONP%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" >浅谈JSONP的前世今生</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/29</span><a class="archive-post-title" href= "/2020/02/29/%E6%89%8B%E6%92%95AJAX/" >手撕AJAX</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1255,6 +1354,10 @@ this id = ...
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
+        <span class="sidebar-tag-name" data-tags="HTTP"><span class="iconfont-archer">&#xe606;</span>HTTP</span>
+    
+        <span class="sidebar-tag-name" data-tags="JSONP"><span class="iconfont-archer">&#xe606;</span>JSONP</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1301,6 +1404,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="命令行"><span class="iconfont-archer">&#xe60a;</span>命令行</span>
     
         <span class="sidebar-category-name" data-categories="Node-js"><span class="iconfont-archer">&#xe60a;</span>Node-js</span>
+    
+        <span class="sidebar-category-name" data-categories="HTTP"><span class="iconfont-archer">&#xe60a;</span>HTTP</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
