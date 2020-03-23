@@ -346,26 +346,150 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/29/%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B(%E7%A9%B6%E6%9E%81%E8%AF%A6%E7%BB%86%E7%89%88)/" >
+        <a class="abstract-title" href = "/2019/06/28/http%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" >
             
-                <span>一次完整的HTTP请求经历了哪些?究极详细版</span>
+                <span>http缓存机制</span>
         </a>
         <div class="abstract-content">
-            1.生物过程​       电脑上的光反射到视网膜,将光信号转化神经信号,传给大脑,大脑处理后,经过脊髓神经给手指下命令,按回车.
-2.计算机原理过程​     键盘被按下后,产生硬件中断信号,键盘发送脉冲给主机,主机里面的操作系统会接收到信号的变化,操作系统分析中断编号是什么按键啊?发现是回车键. 回车的命令传入到浏览器触发按键事件,浏览器收到,浏览器根据域名发出域名解析请求.
-2.解析过程​        首先会搜索浏览器自身的dns缓存 这里我使用的Chrome查询方法是:chrome://net-internals/#hsts 
-没有或过期则去操作系统中找DNS缓存 命令行:ip...
+            123456 强缓存：     响应报文头：    catch-control：max-age&#x3D;212121； 最长生效时常。    expires:服务器绝对时间
+
+
+客户端发请求前，会用当前客户端时间与 （上次请求时间+max-age）进行比较，命中则走缓存。
+expires是一个绝对时间，采用的是服务器的。客户端发送请求前，用客户端时间与这个时间进行比较，命中则走缓存。
+max-age优先级比expires高，并且更加靠谱；
+catch-control1234弱缓存（协商缓存）:    响应报文头:    last-modified：最后一次修改时间    Etag：当前...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/29</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/28</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HTTP">HTTP</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "http">http</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/06/28/http%20get%E4%B8%8Epost%E5%8C%BA%E5%88%AB/" >
+            
+                <span>http get和post区别?</span>
+        </a>
+        <div class="abstract-content">
+            12345678910111213141516171819202122GET在浏览器回退时是无害的，而POST会再次提交请求。GET产生的URL地址可以被Bookmark，而POST不可以。GET请求会被浏览器主动cache，而POST不会，除非手动设置。GET请求只能进行url编码，而POST支持多种编码方式。GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。GET请求在URL中传送的参数是有长度限制的，而POST没有。get传送的数据量较小，不能大于2KB。post传送的数据量较大对参数的数据类型，GET只接受ASCII字符，而POST没有限制。GET比PO...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "http">http</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/06/28/http%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B%E5%8F%8A%E6%8B%BF%E5%88%B0%E5%93%8D%E5%BA%94%E5%90%8E%E7%9A%84%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/" >
+            
+                <span>http请求过程及拿到响应后的渲染过程？</span>
+        </a>
+        <div class="abstract-content">
+            http请求过程：1.浏览器检查当前请求的url是否存在强缓存？命中强缓存，则缓存中读取。2.dns解析：  a.浏览器缓存的dns解析，是否存在。  b.操作系统DNS缓存中搜索  c.本地host进行dns解析。  d.向dns服务器发起请求进行dns解析3.建立tcp链接，三次握手。4.浏览器发出http请求5.服务器分析路由，处理请求，返回响应。6.浏览器接受响应，渲染页面，构建dom7。关闭tcp链接（4次挥手）  
+渲染过程：1.解析html文件，浏览器按照文档流顺序，构建dom树。（深度遍历，当所有子节点都构建好后，才会去构建当前节点的下一个兄弟节点）2.浏览器解析css形...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "http">http</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/06/27/http%E5%9F%BA%E7%A1%80/" >
+            
+                <span>http基础知识</span>
+        </a>
+        <div class="abstract-content">
+            http复习
+DNS域名解析器
+nslookup baidu.com
+ping www.baidu.com
+URL统一资源定位符
+hosts本地储存的 的dns表
+Server + Client  + HTTP端口
+
+
+
+21
+FTP
+
+
+
+443
+HTTPS
+
+
+1080
+代理服务器
+
+
+80
+HTTP
+
+
+3306
+Mysql
+
+
+getcurl -s -v  -H “tong:zhizhang”–  “https://www.baidu.com&quot;
+get 
+postcurl -X POST -d “password” -s -v -H “tong: zhizhang” –...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/27</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "http">http</a>
     
 </div>
             
@@ -746,9 +870,39 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 23
+        Total : 25
         </div>
         <!-- search  -->
         
@@ -764,7 +918,17 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href= "/2020/03/02/%E6%97%A5%E5%BF%97%E6%98%93%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" >日志易面试总结</a>
+            <span class="archive-post-date">03/23</span><a class="archive-post-title" href= "/2020/03/23/flex%E5%A4%A7%E6%B3%95%E5%A5%BD/" >flex大法好</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2020/03/09/%E6%97%A5%E5%BF%97%E6%98%93%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" >车主邦面试总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href= "/2020/03/04/vue.js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" >vue.js学习笔记</a>
         </li>
     
     
@@ -921,107 +1085,7 @@
     
         <span class="sidebar-tag-name" data-tags="面试总结"><span class="iconfont-archer">&#xe606;</span>面试总结</span>
     
-    </div>
-    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
-    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br/>
-    1、请确保node版本大于6.2<br/>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #787878; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: true
-    tags: true</pre>
-    </div> 
-    <div class="sidebar-tags-list"></div>
-</div>
-        <div class="sidebar-panel-categories">
-    <div class="sidebar-categories-name">
-    
-        <span class="sidebar-category-name" data-categories="Java"><span class="iconfont-archer">&#xe60a;</span>Java</span>
-    
-        <span class="sidebar-category-name" data-categories="Front-End"><span class="iconfont-archer">&#xe60a;</span>Front-End</span>
-    
-        <span class="sidebar-category-name" data-categories="JavaScript"><span class="iconfont-archer">&#xe60a;</span>JavaScript</span>
-    
-        <span class="sidebar-category-name" data-categories="ajax"><span class="iconfont-archer">&#xe60a;</span>ajax</span>
-    
-        <span class="sidebar-category-name" data-categories="网络知识"><span class="iconfont-archer">&#xe60a;</span>网络知识</span>
-    
-        <span class="sidebar-category-name" data-categories="命令行"><span class="iconfont-archer">&#xe60a;</span>命令行</span>
-    
-        <span class="sidebar-category-name" data-categories="Node-js"><span class="iconfont-archer">&#xe60a;</span>Node-js</span>
-    
-        <span class="sidebar-category-name" data-categories="HTTP"><span class="iconfont-archer">&#xe60a;</span>HTTP</span>
-    
-        <span class="sidebar-category-name" data-categories="面试总结"><span class="iconfont-archer">&#xe60a;</span>面试总结</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "zhang zhitong"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    
-    <!-- busuanzi  -->
-    
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    <!-- CNZZ  -->
-    
-    </div>
-    <!-- async load share.js -->
-     
-    </body>
-</html>
-
-
-an>
-    
-        <span class="sidebar-tag-name" data-tags="Closure"><span class="iconfont-archer">&#xe606;</span>Closure</span>
-    
-        <span class="sidebar-tag-name" data-tags="IIFE"><span class="iconfont-archer">&#xe606;</span>IIFE</span>
-    
-        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
-    
-        <span class="sidebar-tag-name" data-tags="HTTP"><span class="iconfont-archer">&#xe606;</span>HTTP</span>
-    
-        <span class="sidebar-tag-name" data-tags="JSONP"><span class="iconfont-archer">&#xe606;</span>JSONP</span>
-    
-        <span class="sidebar-tag-name" data-tags="面试总结"><span class="iconfont-archer">&#xe606;</span>面试总结</span>
+        <span class="sidebar-tag-name" data-tags="flex布局"><span class="iconfont-archer">&#xe606;</span>flex布局</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1073,6 +1137,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="HTTP"><span class="iconfont-archer">&#xe60a;</span>HTTP</span>
     
         <span class="sidebar-category-name" data-categories="面试总结"><span class="iconfont-archer">&#xe60a;</span>面试总结</span>
+    
+        <span class="sidebar-category-name" data-categories="flex"><span class="iconfont-archer">&#xe60a;</span>flex</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

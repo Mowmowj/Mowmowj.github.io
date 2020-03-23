@@ -78,6 +78,8 @@
     <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
     
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -201,10 +203,8 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
-        <body class="home-body">
     
-    
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
@@ -220,34 +220,21 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            tongigles's Studio.
-            <!-- 文章页  -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
-            
-            
-                your are the CSS of my HTML.
-            
-            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
@@ -400,433 +387,10 @@ align-content
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/09/%E6%97%A5%E5%BF%97%E6%98%93%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" >
-            
-                <span>车主邦面试总结</span>
-        </a>
-        <div class="abstract-content">
-            车主邦面试总结
-问:   你们学校学过C语言 可以用C写一个 数组去重嘛?
-
-答:  C语言大一学的,不太记得了,但是js也能写呀,有两种实现 第一:ES6的setarray,第二,可以用JS写 两层for循环里加一个if判断 slice去重
-
-问:数组的api哪些会改变原数组
-
-答:/slice 说错
-
-会改变:pop push reverse shift unshift sort splice 
-
-不会改变: slice concat join 
-
-问: jQuery 为什么可以实现 链式调用 ?
-
-答: 知道有这个 没看过源码
-
-问: v-if v-show 区别
-
-答:  v-s...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "面试总结">面试总结</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/04/vue.js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" >
-            
-                <span>vue.js学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            Vuevue:声明式开发
-jQuery: 命令式开发
-MVVM
-V:视图View
-M:数据 data Model
-VM:vue实例
-123456789101112131415161718&lt;div class&#x3D;&quot;app&quot;&gt;      &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;sup&quot;&gt;      &lt;p&gt;&#123;&#123;sup&#125;&#125;&lt;&#x2F;p&gt;      &lt;p&gt;&#123;&#123;sup.toU...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/04</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/29/JSONP%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" >
-            
-                <span>浅谈JSONP的前世今生</span>
-        </a>
-        <div class="abstract-content">
-            JSONP的前世今生在没有jsonp 的时候 由于点击提交会刷新页面前端程序员一开始使用 iframe ,后来发现还可以使用a、form标签但是不够优雅还是会刷新页面或者新打开页面 直到后来有程序员尝试用script  来发请求、完成跨域请求操作. (都只能用get方法)这就是:
-jsonp:                {padding+json+padding}
-请求方:前端 浏览器
-响应方:后端  服务器
-请求创建script src 指向响应方,同时传查询参数 
-?callbackName=随机数    (一般规定 叫callback或者jQuery_callback)
-响应方...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JSONP">JSONP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/29/%E6%89%8B%E6%92%95AJAX/" >
-            
-                <span>手撕AJAX</span>
-        </a>
-        <div class="abstract-content">
-            手撕AJAXAJAXAsysnc+Javasript+And+XML
-script可以发送get请求,但是只能以脚本的形式运行.
-直到IE5率先在JS中引入ActiveX对象,让JS可直接发起HTTP请求.随后Mozilla、Safari、Opera也跟进了取名叫 XMLHttpRequest,并被纳入W3C规范
-ajax可以实现 get post put delete请求
-并以任何形式展示
-12345AJAX 将如下的技术取名叫AJAX :异步的JavaScript 和XML1. 使用XMLHttpRequest发请求2. 服务器返回XML格式的字符串3. JS解析XML.并更新局部页...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "ajax">ajax</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/29/%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B(%E7%A9%B6%E6%9E%81%E8%AF%A6%E7%BB%86%E7%89%88)/" >
-            
-                <span>一次完整的HTTP请求经历了哪些?究极详细版</span>
-        </a>
-        <div class="abstract-content">
-            1.生物过程​       电脑上的光反射到视网膜,将光信号转化神经信号,传给大脑,大脑处理后,经过脊髓神经给手指下命令,按回车.
-2.计算机原理过程​     键盘被按下后,产生硬件中断信号,键盘发送脉冲给主机,主机里面的操作系统会接收到信号的变化,操作系统分析中断编号是什么按键啊?发现是回车键. 回车的命令传入到浏览器触发按键事件,浏览器收到,浏览器根据域名发出域名解析请求.
-2.解析过程​        首先会搜索浏览器自身的dns缓存 这里我使用的Chrome查询方法是:chrome://net-internals/#hsts 
-没有或过期则去操作系统中找DNS缓存 命令行:ip...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HTTP">HTTP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/04/COVID-19%E7%96%AB%E6%83%85%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9C%B0%E5%9B%BE%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" >
-            
-                <span>COVID-19疫情大数据可视化地图项目总结</span>
-        </a>
-        <div class="abstract-content">
-            COVID-19疫情大数据可视化地图运行方法:
-1234node .&#x2F;server&#x2F;spider.js&#x2F;&#x2F;启动node爬虫采集并清洗数据node .&#x2F;server&#x2F;index.js&#x2F;&#x2F;将数据用本地服务器解析 并分配8002号端口
-
-点击index.html启动网页
-主要功能统计全国COVID19病毒感染数据,并**实现动态数据可视化展示** 优雅直观的显示重要数据走向与差异变化,根据鼠标或手势指向显示不同省份详细数据
-其中包括:    
-中国地图与感染人数映射图     
-(通过颜色分辨显示不同区域的人数)
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/07/18/ES6/" >
-            
-                <span>ES6语法</span>
-        </a>
-        <div class="abstract-content">
-            JavaScriptES6里面前十个到带标签的模板字面量
-加上
-对象属性加强
-解构赋值
-模块
-let const calss 展开运算
-
-argument类数组参数集合   super调用父类
-new.target指向被new调用的构造函数，所以”new.”成为了一个虚拟上下文
-
-map方法用于返回一个新的数组
-array.map(function(item,index,arr){})
-item 当前的值
-arr当前元素所属的数组对象
-split()方法 转化字符串为数组
-var使用var 
-通过var声明的变量没有块级作用域
-使用let 和 const 是有块级作用域的
-let块级作用...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/28/http%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" >
-            
-                <span>http缓存机制</span>
-        </a>
-        <div class="abstract-content">
-            123456 强缓存：     响应报文头：    catch-control：max-age&#x3D;212121； 最长生效时常。    expires:服务器绝对时间
-
-
-客户端发请求前，会用当前客户端时间与 （上次请求时间+max-age）进行比较，命中则走缓存。
-expires是一个绝对时间，采用的是服务器的。客户端发送请求前，用客户端时间与这个时间进行比较，命中则走缓存。
-max-age优先级比expires高，并且更加靠谱；
-catch-control1234弱缓存（协商缓存）:    响应报文头:    last-modified：最后一次修改时间    Etag：当前...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "http">http</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/28/http%20get%E4%B8%8Epost%E5%8C%BA%E5%88%AB/" >
-            
-                <span>http get和post区别?</span>
-        </a>
-        <div class="abstract-content">
-            12345678910111213141516171819202122GET在浏览器回退时是无害的，而POST会再次提交请求。GET产生的URL地址可以被Bookmark，而POST不可以。GET请求会被浏览器主动cache，而POST不会，除非手动设置。GET请求只能进行url编码，而POST支持多种编码方式。GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。GET请求在URL中传送的参数是有长度限制的，而POST没有。get传送的数据量较小，不能大于2KB。post传送的数据量较大对参数的数据类型，GET只接受ASCII字符，而POST没有限制。GET比PO...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "http">http</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">NEXT &amp;#62;</a>
-    </nav>
     
 </main>
             <!-- profile -->
-            
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= /avatar/liver.jpg >
-    <div class="profile-name">SheltonZ</div>
-    
-    <div class="profile-signature">
-        witness me
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
-            
-                <a href="mailto:tongigle@icloud.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/Mowmowj" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer wechat" title=wechat>
-                  
-                  <img class="profile-qr" src="/assets/example_qr.png" />
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-            
-                
-                    <span>
-                        <a href= //www.google.com target="_black">friendB</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
             
         </div>
         <footer class="footer footer-unloaded">
