@@ -346,299 +346,25 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/12/%E4%BB%80%E4%B9%88%E6%98%AFClosure/" >
+        <a class="abstract-title" href = "/2020/03/24/flex%E5%A4%A7%E6%B3%95%E5%A5%BD%20-%20%E5%89%AF%E6%9C%AC/" >
             
-                <span>什么是Closure?</span>
+                <span>Webpack Plugins Kit</span>
         </a>
         <div class="abstract-content">
-            什么是闭包参考知乎专栏:https://zhuanlan.zhihu.com/p/22486908
-function createAdder(){
-​        n=0
-return function(){
-​        n+=1    
-​    }
-}
-let adder = createAdder()
-adder()//n===1
-adder()//n===2
-console.log(n)// n is not defined
-function foo(){  
-var local = 1 
- function bar(){
-​    local++    
-return ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Closure">Closure</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/12/%E4%BB%80%E4%B9%88%E6%98%AF%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0%20IIFE/" >
-            
-                <span>什么是立即执行函数 IIFE?</span>
-        </a>
-        <div class="abstract-content">
-            什么是立即执行函数 IIFE?参考知乎专栏:https://zhuanlan.zhihu.com/p/42365718
-声明完立即执行的函数
-Immediately Invoked Function Expression
-最推荐:!funciton(){}.call()
-(funciton(){})()
-;(function(){}())
-(funciton(){}.call())
-!function(){}()
-~function(){}()
-!!!!!!function(){}()
-作用:造出一个函数作用域
-防止污染全局
-ES6新语法
-{
-let name
-} 
-function o...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "IIFE">IIFE</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/06/CSS3%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/" >
-            
-                <span>CSS3媒体查询</span>
-        </a>
-        <div class="abstract-content">
-            # css3媒体查询
-css3媒体查询是响应式方案核心媒体类型all                  所有媒体（默认值）
-screen           彩色屏幕
-print              打印预览
+            Webpack Plugins Kit基本配置12yarn add webpack webpack-cli  -dev//局部安装 webpack-cli
 
-
-projection     手持设备
-tv                   电视
-braille           盲文触觉设备
-embossed     盲文打印机
-speech        “听觉”类似的媒体设备
-tty                 不适用像素的设备媒体属性width               （可加max min前缀）
-height ...
+123456789101112const path = require("path")module.exports= &#123;    entry: './src/main.js',//指定webpack对main.js进行管理    output: &#123;//输出文件位置        path: path.resolve(__dirname,"dist"),//__dirname 代表本文件的绝对目录，如果没有新建一个d...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/06</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/24</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "CSS3">CSS3</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/04/CSS3%E9%80%89%E6%8B%A9%E5%99%A8/" >
-            
-                <span>CSS选择器</span>
-        </a>
-        <div class="abstract-content">
-            CSS选择器​    CSS3选择器规范地址：       https://www.w3.org/TR/2011/REC-css3-selectors-20110929/​    CSS3选择最新选择器规范:  https://www.w3.org/TR/selectors​    
-1234567891011!---问题---!	1.css的全称是什么？	2.样式表的组成	3.浏览器读取编译css的顺序？1.基本选择器	&#x2F;*通配符选择器*&#x2F;		* &#123; margin: 0; padding: 0; border: none; &#125;	&#x2F;*元素...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "CSS3">CSS3</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/05/24/Webpack%20Plugins%20Kit/" >
-            
-                <span>sessionStorage与localStorge作用域</span>
-        </a>
-        <div class="abstract-content">
-            sessionStorage localStorge作用域都是采用键值对的形式存储，两者都是通过setItem、getItem、removeItem来实现增删查改，而sessionStorage是会话存储，也就是说当浏览器关闭之后sessionStorage也自动清空了，而localStorage不会
- 这里的作用域指的是：
-如何隔离开不同页面之间的localStorage（总不能在百度的页面上能读到腾讯的localStorage）。localStorage只要在相同的协议、相同的主机名、相同的端口下，就能读取/修改到同一份localStorage数据。sessionStorage比lo...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HTML">HTML</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/05/23/HTML5%20%E6%96%B0%E7%89%B9%E6%80%A7/" >
-            
-                <span>HTML新特性</span>
-        </a>
-        <div class="abstract-content">
-            HTML5 新特性1.让浏览器支持html5为了能让旧版本的浏览器正确显示这些元素，你可以设置 CSS 的 display 属性值为 block:
-  header, section, footer, aside, nav, main, article, figure {
-display: block; }为html 添加新元素12345678910111213141516171819202122232425262728&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset&#x3D;&quot;utf-8&quot;&...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HTML5">HTML5</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/05/03/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%8B%E5%86%8C/" >
-            
-                <span>正则表达式手册</span>
-        </a>
-        <div class="abstract-content">
-            正则表达式正则表达式用于定义一些字符串的规则，
-计算机可以根据正则表达式，来检查一个字符串是否符合规则，
-获取将字符串中符合规则的内容提取出来.
-正则表达式语法方法一:    创建正则表达式   (优点 : 更加灵活)var 变量 = new RegExp(“正则表达式”,”匹配模式”);
-匹配模式
-1.忽略大小写 i
-2.全局匹配模式 g
-e.g.
-var r= new RegExp(“a”);//定义规则
-方法二:    字面量创建正则表达式    (优点 : 更加方便)var 变量 = /正则表达式/匹配模式
-变量 = /正则表达式/匹配模式
-test()方法符合返回true 不符...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "正则表达式">正则表达式</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/04/12/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87/" >
-            
-                <span>JavaSE重点笔记</span>
-        </a>
-        <div class="abstract-content">
-            
-This关键字概念this是java 关键字 意思：这个
-this是一个引用
-this是一个变量
-this保存了内存地址指向了自身
-this 保存在JVM堆内存中
-this应用在两个位置构造方法当中
-实例方法当中
-（在静态方法种无法使用this（因为没有对象的参与，静态方法是采用类名的方式调用）所以在静态方法中无法直接使用this
-在实例方法中可以用，因为调用实例方法的时候调用了对象。
-语法位于构造方法中第一行
-this（）通过当前的构造方法调用别的构造方法代码可以得到重复使用
-this.  主要用在实例方法中用以区分局部变量和实例变量，比如下面：
-int id 
-this id = ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaSE">JavaSE</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "查询手册">查询手册</a>
     
 </div>
             
@@ -646,10 +372,6 @@ this id = ...
     </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/2019/">&amp;#60; PREV</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span>
-    </nav>
     
 </main>
             <!-- profile -->
