@@ -506,11 +506,9 @@ height ...
                 <span>sessionStorage与localStorge作用域</span>
         </a>
         <div class="abstract-content">
-            sessionStorage localStorge作用域 这里的作用域指的是：如何隔离开不同页面之间的localStorage（总不能在百度的页面上能读到腾讯的localStorage）。localStorage只要在相同的协议、相同的主机名、相同的端口下，就能读取/修改到同一份localStorage数据。sessionStorage比localStorage更严苛一点，除了协议、主机名、端口外，还要求在同一窗口（也就是浏览器的标签页）下但是以下几种情况特殊:
-
-同网源同窗口下的a标签可以传输sessionstorage
-
-同窗口里的iframe标签可以使用sessionstorag...
+            sessionStorage localStorge作用域都是采用键值对的形式存储，两者都是通过setItem、getItem、removeItem来实现增删查改，而sessionStorage是会话存储，也就是说当浏览器关闭之后sessionStorage也自动清空了，而localStorage不会
+ 这里的作用域指的是：
+如何隔离开不同页面之间的localStorage（总不能在百度的页面上能读到腾讯的localStorage）。localStorage只要在相同的协议、相同的主机名、相同的端口下，就能读取/修改到同一份localStorage数据。sessionStorage比lo...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->

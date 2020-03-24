@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">151</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">209</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -401,7 +401,9 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="sessionStorage-localStorge作用域"><a href="#sessionStorage-localStorge作用域" class="headerlink" title="sessionStorage localStorge作用域"></a>sessionStorage localStorge作用域</h1><p> 这里的作用域指的是：如何隔离开不同页面之间的localStorage（总不能在百度的页面上能读到腾讯的localStorage）。<br>localStorage只要在相同的协议、相同的主机名、相同的端口下，就能读取/修改到同一份localStorage数据。<br>sessionStorage比localStorage更严苛一点，除了协议、主机名、端口外，还要求在同一窗口（也就是浏览器的标签页）下<br>但是以下几种情况特殊:</p>
+        <h1 id="sessionStorage-localStorge作用域"><a href="#sessionStorage-localStorge作用域" class="headerlink" title="sessionStorage localStorge作用域"></a>sessionStorage localStorge作用域</h1><p>都是采用键值对的形式存储，两者都是通过setItem、getItem、removeItem来实现增删查改，而sessionStorage是会话存储，也就是说<br>当浏览器关闭之后sessionStorage也自动清空了，而localStorage不会</p>
+<p> 这里的作用域指的是：</p>
+<p>如何隔离开不同页面之间的localStorage（总不能在百度的页面上能读到腾讯的localStorage）。<br>localStorage只要在相同的协议、相同的主机名、相同的端口下，就能读取/修改到同一份localStorage数据。<br>sessionStorage比localStorage更严苛一点，除了协议、主机名、端口外，还要求在同一窗口（也就是浏览器的标签页）下<br>但是以下几种情况特殊:</p>
 <ul>
 <li><p>同网源同窗口下的a标签可以传输sessionstorage</p>
 </li>
