@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">1.6k</span>Reading time: <span class="post-count reading-time">8 min</span></span>
+                        <span>Word count: <span class="post-count word-count">1.6k</span>Reading time: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -418,11 +418,11 @@ height:50vh;
 
 <h3 id="用mini-css-extract-plugin-–dev-导出css文件并压缩"><a href="#用mini-css-extract-plugin-–dev-导出css文件并压缩" class="headerlink" title="用mini-css-extract-plugin –dev 导出css文件并压缩"></a>用mini-css-extract-plugin –dev 导出css文件并压缩</h3><p>将CSS提取为独立的文件的插件，对每个包含css的js文件都会创建一个CSS文件</p>
 <p>安装minicssextractplugin</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add mini-css-extract-plugin -dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add mini-css-extract-plugin -dev</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const MiniCssExtractPlugin &#x3D; require(&#39;mini-css-extract-plugin&#39;);</span><br><span class="line">test: &#x2F;\.css$&#x2F;,</span><br><span class="line">use: [MiniCssExtractPlugin.loader,&quot;css-loader&quot;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">'mini-css-extract-plugin'</span>);</span><br><span class="line">test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">use: [MiniCssExtractPlugin.loader,<span class="string">"css-loader"</span>]</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;压缩</span><br><span class="line">const MiniCssExtractPlugin &#x3D; require(&#39;mini-css-extract-plugin&#39;);&#x2F;&#x2F;打包css</span><br><span class="line">const TerserJSPlugin &#x3D; require(&quot;terser-webpack-plugin&quot;);</span><br><span class="line">const OptimizeCSSAssetsPlugin &#x3D; require(&#39;optimize-css-assets-webpack-plugin&#39;);</span><br><span class="line"></span><br><span class="line"> optimization:&#123; &#x2F;&#x2F;压缩css</span><br><span class="line">        minimizer: [new TerserJSPlugin(&#123;&#125;),new OptimizeCSSAssetsPlugin(&#123;&#125;)], &#x2F;&#x2F;压缩</span><br><span class="line">    &#125;,</span><br><span class="line">plugin:[</span><br><span class="line">new MiniCssExtractPlugin(&#123;  &#x2F;&#x2F;导出html文件中的style作为文件保存</span><br><span class="line">            filename: &#39;bundle.[name].css&#39;,</span><br><span class="line">            chunkFilename:&#39;[id].css&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">    </span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//压缩</span></span><br><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">'mini-css-extract-plugin'</span>);<span class="comment">//打包css</span></span><br><span class="line"><span class="keyword">const</span> TerserJSPlugin = <span class="built_in">require</span>(<span class="string">"terser-webpack-plugin"</span>);</span><br><span class="line"><span class="keyword">const</span> OptimizeCSSAssetsPlugin = <span class="built_in">require</span>(<span class="string">'optimize-css-assets-webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"> optimization:&#123; <span class="comment">//压缩css</span></span><br><span class="line">        minimizer: [<span class="keyword">new</span> TerserJSPlugin(&#123;&#125;),<span class="keyword">new</span> OptimizeCSSAssetsPlugin(&#123;&#125;)], <span class="comment">//压缩</span></span><br><span class="line">    &#125;,</span><br><span class="line">plugin:[</span><br><span class="line"><span class="keyword">new</span> MiniCssExtractPlugin(&#123;  <span class="comment">//导出html文件中的style作为文件保存</span></span><br><span class="line">            filename: <span class="string">'bundle.[name].css'</span>,</span><br><span class="line">            chunkFilename:<span class="string">'[id].css'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">    </span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
 
 
@@ -530,6 +530,11 @@ height:50vh;
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2020/03/25/%E6%89%93%E5%AD%97%E7%BB%83%E4%B9%A0%E8%AE%B0%E5%BD%95%E8%B4%B4/" title= "打字练习记录贴">
+                    <div class="nextTitle">打字练习记录贴</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -990,9 +995,24 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 26
+        Total : 27
         </div>
         <!-- search  -->
         
@@ -1005,6 +1025,11 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/25</span><a class="archive-post-title" href= "/2020/03/25/%E6%89%93%E5%AD%97%E7%BB%83%E4%B9%A0%E8%AE%B0%E5%BD%95%E8%B4%B4/" >打字练习记录贴</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1184,6 +1209,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Kit"><span class="iconfont-archer">&#xe606;</span>Kit</span>
     
+        <span class="sidebar-tag-name" data-tags="keybr"><span class="iconfont-archer">&#xe606;</span>keybr</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1238,6 +1265,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="flex"><span class="iconfont-archer">&#xe60a;</span>flex</span>
     
         <span class="sidebar-category-name" data-categories="Webpack"><span class="iconfont-archer">&#xe60a;</span>Webpack</span>
+    
+        <span class="sidebar-category-name" data-categories="keybr"><span class="iconfont-archer">&#xe60a;</span>keybr</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
