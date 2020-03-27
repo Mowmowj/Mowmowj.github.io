@@ -346,6 +346,75 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/29/%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B(%E7%A9%B6%E6%9E%81%E8%AF%A6%E7%BB%86%E7%89%88)/" >
+            
+                <span>一次完整的HTTP请求经历了哪些?究极详细版</span>
+        </a>
+        <div class="abstract-content">
+            1.生物过程​       电脑上的光反射到视网膜,将光信号转化神经信号,传给大脑,大脑处理后,经过脊髓神经给手指下命令,按回车.
+2.计算机原理过程​     键盘被按下后,产生硬件中断信号,键盘发送脉冲给主机,主机里面的操作系统会接收到信号的变化,操作系统分析中断编号是什么按键啊?发现是回车键. 回车的命令传入到浏览器触发按键事件,浏览器收到,浏览器根据域名发出域名解析请求.
+2.解析过程​        首先会搜索浏览器自身的dns缓存 这里我使用的Chrome查询方法是:chrome://net-internals/#hsts 
+没有或过期则去操作系统中找DNS缓存 命令行:ip...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "HTTP">HTTP</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/04/COVID-19%E7%96%AB%E6%83%85%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9C%B0%E5%9B%BE%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" >
+            
+                <span>COVID-19疫情大数据可视化地图项目总结</span>
+        </a>
+        <div class="abstract-content">
+            COVID-19疫情大数据可视化地图运行方法:
+1234node .&#x2F;server&#x2F;spider.js&#x2F;&#x2F;启动node爬虫采集并清洗数据node .&#x2F;server&#x2F;index.js&#x2F;&#x2F;将数据用本地服务器解析 并分配8002号端口
+
+点击index.html启动网页
+主要功能统计全国COVID19病毒感染数据,并**实现动态数据可视化展示** 优雅直观的显示重要数据走向与差异变化,根据鼠标或手势指向显示不同省份详细数据
+其中包括:    
+中国地图与感染人数映射图     
+(通过颜色分辨显示不同区域的人数)
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/07/18/ES6/" >
             
                 <span>ES6语法</span>
@@ -652,77 +721,6 @@ touch i...
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "shell">shell</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/19/JavaScript%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/" >
-            
-                <span>JavaScript笔记整理</span>
-        </a>
-        <div class="abstract-content">
-            基本语法强制类型转换转化为String类型方法一: 使用toString()方法
-
-null和undefined不能使用该方法
-toString()方法不会改变原变量
-
-方法二: 使用string()函数
-
-可以使用null和undefined
-将null和undefined转换为”null”和”undefined”
-对于number和boolean类型来说调用的还是toString()
-
-1234var a =520; a=a.toString();console.log(typeof a);console.log(a);
-
-转换为number类型方式一:使用Number()函数   ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/06/13/JS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%20GC/" >
-            
-                <span>JS垃圾回收机制 GC</span>
-        </a>
-        <div class="abstract-content">
-            JS垃圾回收机制 GC123456789101112131415161718192021222324不再用到的内存（一个不用到的值）没有及时释放，就叫做内存泄漏（memory leak）。垃圾回收机制：引用计数最常使用的方法叫做&quot;引用计数&quot;（reference counting）：语言引擎有一张&quot;引用表&quot;，保存了内存里面所有的资源（通常是各种值）的引用次数。如果一个值的引用次数是0，就表示这个值不再用到了，因此可以将这块内存释放JavaScript的解释器可以检测到何时程序不再使用一个对象了，当他确定了一个对象是无用的时候，他就知道不再需要这个对象...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
     
 </div>
             
@@ -1182,9 +1180,39 @@ toString()方法不会改变原变量
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 28
+        Total : 30
         </div>
         <!-- search  -->
         
@@ -1197,6 +1225,16 @@ toString()方法不会改变原变量
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/28</span><a class="archive-post-title" href= "/2020/03/28/%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%E7%AC%94%E8%AE%B0/" >《算法图解》笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/27</span><a class="archive-post-title" href= "/2020/03/27/VueX/" >VueX</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1390,6 +1428,8 @@ toString()方法不会改变原变量
     
         <span class="sidebar-tag-name" data-tags="Vue"><span class="iconfont-archer">&#xe606;</span>Vue</span>
     
+        <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1448,6 +1488,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="keybr"><span class="iconfont-archer">&#xe60a;</span>keybr</span>
     
         <span class="sidebar-category-name" data-categories="Vue"><span class="iconfont-archer">&#xe60a;</span>Vue</span>
+    
+        <span class="sidebar-category-name" data-categories="书籍"><span class="iconfont-archer">&#xe60a;</span>书籍</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

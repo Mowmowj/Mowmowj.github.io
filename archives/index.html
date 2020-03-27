@@ -346,6 +346,77 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/28/%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%E7%AC%94%E8%AE%B0/" >
+            
+                <span>《算法图解》笔记</span>
+        </a>
+        <div class="abstract-content">
+            《算法图解》笔记
+暂时没题目BFS 广度优先搜索（breadth-first search）
+又名：图算法
+应用领域：到XXX有路径吗？到XXX最短路径是什么？
+题目：
+
+查找我的人脉网 看有没有 名字m结尾的人？
+主要思路：
+使用python里的散列表（队列）先进先出
+使用另外一个数组放检查过的人
+关系网顺序无所谓
+12345678910111213141516171819202122232425262728293031from collections import dequeneighbor = &#123;&#125;                                ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法">算法</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/27/VueX/" >
+            
+                <span>VueX</span>
+        </a>
+        <div class="abstract-content">
+            VueXvuex 主要负责层级状态的处理变化
+一个对象包括全部应用层级状态
+State :单一状态数树
+包含一个Store实例
+不是要把所有状态都放到VueX
+会又臭又长
+如果有的严格属于某一组件还是放到局部组件的好
+State单一状态树约等于 data
+1234567891011121314151617181920212223242526272829303132333435363738&lt;div id = "app"&gt;&lt;/div&gt;const store = new Vuex.Store（&#123;	state:&#123;		count: 10,		messag...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/27</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/03/27/%E4%BD%A0%E7%9A%84%E8%A1%80%E6%9D%A1%E7%AE%A1%E7%90%86%E5%99%A8VueX/" >
             
                 <span>你的血条管理器————VueX</span>
@@ -645,75 +716,6 @@ ajax可以实现 get post put delete请求
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "ajax">ajax</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/29/%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B(%E7%A9%B6%E6%9E%81%E8%AF%A6%E7%BB%86%E7%89%88)/" >
-            
-                <span>一次完整的HTTP请求经历了哪些?究极详细版</span>
-        </a>
-        <div class="abstract-content">
-            1.生物过程​       电脑上的光反射到视网膜,将光信号转化神经信号,传给大脑,大脑处理后,经过脊髓神经给手指下命令,按回车.
-2.计算机原理过程​     键盘被按下后,产生硬件中断信号,键盘发送脉冲给主机,主机里面的操作系统会接收到信号的变化,操作系统分析中断编号是什么按键啊?发现是回车键. 回车的命令传入到浏览器触发按键事件,浏览器收到,浏览器根据域名发出域名解析请求.
-2.解析过程​        首先会搜索浏览器自身的dns缓存 这里我使用的Chrome查询方法是:chrome://net-internals/#hsts 
-没有或过期则去操作系统中找DNS缓存 命令行:ip...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "HTTP">HTTP</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/04/COVID-19%E7%96%AB%E6%83%85%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9C%B0%E5%9B%BE%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" >
-            
-                <span>COVID-19疫情大数据可视化地图项目总结</span>
-        </a>
-        <div class="abstract-content">
-            COVID-19疫情大数据可视化地图运行方法:
-1234node .&#x2F;server&#x2F;spider.js&#x2F;&#x2F;启动node爬虫采集并清洗数据node .&#x2F;server&#x2F;index.js&#x2F;&#x2F;将数据用本地服务器解析 并分配8002号端口
-
-点击index.html启动网页
-主要功能统计全国COVID19病毒感染数据,并**实现动态数据可视化展示** 优雅直观的显示重要数据走向与差异变化,根据鼠标或手势指向显示不同省份详细数据
-其中包括:    
-中国地图与感染人数映射图     
-(通过颜色分辨显示不同区域的人数)
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
     
 </div>
             
@@ -1173,9 +1175,39 @@ ajax可以实现 get post put delete请求
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 28
+        Total : 30
         </div>
         <!-- search  -->
         
@@ -1188,6 +1220,16 @@ ajax可以实现 get post put delete请求
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/28</span><a class="archive-post-title" href= "/2020/03/28/%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%E7%AC%94%E8%AE%B0/" >《算法图解》笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/27</span><a class="archive-post-title" href= "/2020/03/27/VueX/" >VueX</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1381,6 +1423,8 @@ ajax可以实现 get post put delete请求
     
         <span class="sidebar-tag-name" data-tags="Vue"><span class="iconfont-archer">&#xe606;</span>Vue</span>
     
+        <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1439,6 +1483,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="keybr"><span class="iconfont-archer">&#xe60a;</span>keybr</span>
     
         <span class="sidebar-category-name" data-categories="Vue"><span class="iconfont-archer">&#xe60a;</span>Vue</span>
+    
+        <span class="sidebar-category-name" data-categories="书籍"><span class="iconfont-archer">&#xe60a;</span>书籍</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

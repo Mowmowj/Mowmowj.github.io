@@ -346,6 +346,77 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/06/19/JavaScript%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/" >
+            
+                <span>JavaScript笔记整理</span>
+        </a>
+        <div class="abstract-content">
+            基本语法强制类型转换转化为String类型方法一: 使用toString()方法
+
+null和undefined不能使用该方法
+toString()方法不会改变原变量
+
+方法二: 使用string()函数
+
+可以使用null和undefined
+将null和undefined转换为”null”和”undefined”
+对于number和boolean类型来说调用的还是toString()
+
+1234var a =520; a=a.toString();console.log(typeof a);console.log(a);
+
+转换为number类型方式一:使用Number()函数   ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/19</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/06/13/JS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%20GC/" >
+            
+                <span>JS垃圾回收机制 GC</span>
+        </a>
+        <div class="abstract-content">
+            JS垃圾回收机制 GC123456789101112131415161718192021222324不再用到的内存（一个不用到的值）没有及时释放，就叫做内存泄漏（memory leak）。垃圾回收机制：引用计数最常使用的方法叫做&quot;引用计数&quot;（reference counting）：语言引擎有一张&quot;引用表&quot;，保存了内存里面所有的资源（通常是各种值）的引用次数。如果一个值的引用次数是0，就表示这个值不再用到了，因此可以将这块内存释放JavaScript的解释器可以检测到何时程序不再使用一个对象了，当他确定了一个对象是无用的时候，他就知道不再需要这个对象...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaScript">JavaScript</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/06/12/%E4%BB%80%E4%B9%88%E6%98%AFClosure/" >
             
                 <span>什么是Closure?</span>
@@ -1098,9 +1169,39 @@ this id = ...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 28
+        Total : 30
         </div>
         <!-- search  -->
         
@@ -1113,6 +1214,16 @@ this id = ...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/28</span><a class="archive-post-title" href= "/2020/03/28/%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%E7%AC%94%E8%AE%B0/" >《算法图解》笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/27</span><a class="archive-post-title" href= "/2020/03/27/VueX/" >VueX</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1306,6 +1417,8 @@ this id = ...
     
         <span class="sidebar-tag-name" data-tags="Vue"><span class="iconfont-archer">&#xe606;</span>Vue</span>
     
+        <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1364,6 +1477,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="keybr"><span class="iconfont-archer">&#xe60a;</span>keybr</span>
     
         <span class="sidebar-category-name" data-categories="Vue"><span class="iconfont-archer">&#xe60a;</span>Vue</span>
+    
+        <span class="sidebar-category-name" data-categories="书籍"><span class="iconfont-archer">&#xe60a;</span>书籍</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

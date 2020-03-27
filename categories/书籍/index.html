@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>JavaSE重点笔记 · SheltonZhang&#39;s Studio</title>
+    <title>SheltonZhang&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,23 +203,12 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >Shelton Zhang&#39;s Studio.</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">JavaSE重点笔记</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>Shelton Zhang's Studio.</a>
 </header>
@@ -231,74 +220,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            JavaSE重点笔记
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaSE">JavaSE</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">1.4k</span>Reading time: <span class="post-count reading-time">5 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/04/12</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -399,155 +338,50 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <hr>
-<h1 id="This关键字"><a href="#This关键字" class="headerlink" title="This关键字"></a>This关键字</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>this是java 关键字 意思：这个</p>
-<p>this是一个引用</p>
-<p>this是一个变量</p>
-<p>this保存了内存地址指向了自身</p>
-<p>this 保存在JVM堆内存中</p>
-<h3 id="this应用在两个位置"><a href="#this应用在两个位置" class="headerlink" title="this应用在两个位置"></a>this应用在两个位置</h3><p>构造方法当中</p>
-<p>实例方法当中</p>
-<p>（在静态方法种无法使用this（因为没有对象的参与，静态方法是采用类名的方式调用）所以在静态方法中无法直接使用this</p>
-<p>在实例方法中可以用，因为调用实例方法的时候调用了对象。</p>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>位于构造方法中第一行</p>
-<p>this（）通过当前的构造方法调用别的构造方法代码可以得到重复使用</p>
-<p>this.  主要用在实例方法中用以区分局部变量和实例变量，比如下面：</p>
-<p>int id </p>
-<p>this id = id 前面为当前对象的属性是实例变量 后面是局部变量。</p>
-<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p><strong>成员变量 = 实例变量+基本数据类型变量</strong></p>
-<p><strong>实例变量</strong>存在<strong>堆内存</strong>中Java对象内部</p>
-<p>在<strong>构造方法执行过程中</strong>初始化</p>
-<p><strong>静态变量</strong>存在<strong>方法区</strong></p>
-<p>在类加载的时候初始化</p>
-<p><strong>局部变量</strong>存在<strong>栈内存</strong>中</p>
-<h1 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h1><p>\1. 继承代码可以复用</p>
-<p>\2. ★继承了才有多态和方法覆盖</p>
-<h3 id="这里可以用到eclipse自动继承"><a href="#这里可以用到eclipse自动继承" class="headerlink" title="这里可以用到eclipse自动继承"></a>这里可以用到eclipse自动继承</h3><h1 id="方法重载-Overload"><a href="#方法重载-Overload" class="headerlink" title="方法重载 Overload"></a>方法重载 Overload</h1><p>方法重载是指在一个类中定义多个同名的方法</p>
-<h3 id="什么时候使用方法重载？"><a href="#什么时候使用方法重载？" class="headerlink" title="什么时候使用方法重载？"></a>什么时候使用方法重载？</h3><p>覆盖要求参数列表相同</p>
-<h3 id="方法重载规范"><a href="#方法重载规范" class="headerlink" title="方法重载规范"></a>方法重载规范</h3><p>一.方法名一定要相同。</p>
-<p>二.方法的参数表必须不同，包括参数的类型或个数，以此区分不同的方法体。</p>
-<p>1.如果参数个数不同，就不管它的参数类型了！</p>
-<p>2.如果参数个数相同，那么参数的类型必须不同。</p>
-<p>三.方法的返回类型、<a href="https://baike.baidu.com/item/修饰符" target="_blank" rel="noopener">修饰符</a>可以相同，也可不同。</p>
-<h3 id="方法重载和什么无关？"><a href="#方法重载和什么无关？" class="headerlink" title="方法重载和什么无关？"></a>方法重载和什么无关？</h3><p>和返回值类型无关和修饰符列表无关</p>
-<p>class MethodOverloading {</p>
-<p>  void receive(int i) {</p>
-<p>​    System.out.println(“Received one int data”);</p>
-<p>​    System.out.println(“i=”+i);</p>
-<p>  }</p>
-<p>  void receive(float f) {</p>
-<p>​    System.out.println(“Received one float data”);</p>
-<p>​    System.out.println(“f=”+f);</p>
-<p>  }</p>
-<p>  void receive(String s) {</p>
-<p>​    System.out.println(“Received a String”);</p>
-<p>​    System.out.println(“s=”+s);</p>
-<p>  }</p>
-<p>  public static void main(String [] args){</p>
-<p>​    MethodOverloading m = new MethodOverloading();</p>
-<p>​    m.receive(3456);</p>
-<p>​    m.receive(34.56f);</p>
-<p>​    m.receive(“方法重载”);</p>
-<p>这三个方法便是方法覆盖Overload</p>
-<h1 id="方法覆盖-方法重写（Override-Overwrite）"><a href="#方法覆盖-方法重写（Override-Overwrite）" class="headerlink" title="方法覆盖/方法重写（Override/Overwrite）"></a>方法覆盖/方法重写（Override/Overwrite）</h1><h3 id="什么时候使用方法重写？"><a href="#什么时候使用方法重写？" class="headerlink" title="什么时候使用方法重写？"></a>什么时候使用方法重写？</h3><p>\1.  当父类中的方法已经无法满足子类的业务需求时</p>
-<p>\2.  子列有必要将从父类继承过来的方法进行重新编写</p>
-<p>\3.  这个重写的过程称为方法重写/方法覆盖</p>
-<h3 id="什么条件满足情况下发生重载？"><a href="#什么条件满足情况下发生重载？" class="headerlink" title="什么条件满足情况下发生重载？"></a>什么条件满足情况下发生重载？</h3><p>\1.  方法重写发生在具有继承父子列关系之间</p>
-<p>\2. 方法重写时，返回值类型相同、方法名相同、形参列表相同（建议复制粘贴）</p>
-<p>\3. 方法重写时，访问权限可以更大不能更低</p>
-<p>\4. 方法重写时，方位异常不能更多可以更少</p>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>\1. 私有方法不能继承，所以不能方法重写</p>
-<p>\2. 构造方法不能继承，所以不能方法覆盖</p>
-<p>\3. 静态方法不存在覆盖</p>
-<p>\4.  覆盖只针对方法，不谈属性和变量</p>
-<h1 id="多态-Polymorphism"><a href="#多态-Polymorphism" class="headerlink" title="多态 Polymorphism"></a>多态 Polymorphism</h1><h4 id="面向对象三大特征：封装、继承、多态"><a href="#面向对象三大特征：封装、继承、多态" class="headerlink" title="面向对象三大特征：封装、继承、多态"></a>面向对象三大特征：封装、继承、多态</h4><h3 id="多态几个概念（必须先有继承关系）"><a href="#多态几个概念（必须先有继承关系）" class="headerlink" title="多态几个概念（必须先有继承关系）"></a>多态几个概念（必须先有继承关系）</h3><p>向上转型  Upcasting</p>
-<p>子类型à父类型</p>
-<p>自动类型转换</p>
-<p>向下转型  Downcasting</p>
-<p>父类型à子类型</p>
-<p>强制类型转换 【需要加强制类型转换符】</p>
-<p>父转子类型经常会出现classcastException错误 这时用instanceof来避免错误</p>
-<p>If (a3 instanceof Cat){  //a3是Cat类型的对象？</p>
-<p>   Cat c3 = (Cat) a3;</p>
-<p>   a3.catcgMouse();</p>
-<p>}else if (a3 instanceof Bird){ // a3是Bird类型的对象？</p>
-<p>   Bird b3 =(Bird) a3</p>
-<p>   b3.fly();</p>
-<p>}</p>
-<h1 id="Final关键字"><a href="#Final关键字" class="headerlink" title="Final关键字"></a>Final关键字</h1><p>Final是一个关键字 表示最终的不可变的</p>
-<p>Final修饰的类无法被继承</p>
-<p>Final修饰的方法无法被覆盖</p>
-<p>Final修饰的变量一旦复制以后不可重新赋值</p>
-<p>Final修饰的实例变量 实例变量有默认值 用final修饰必须手动赋值</p>
-<p>Final 修饰的实例变量是不可变的这种变量一般和static联合使用被称为常量</p>
-<p>Public static final 类型 常量名 = 值</p>
-<p>JAVA 要求常量名全部大写 单词之间用__下划线连接</p>
-<p>Final修饰符的引用一旦指向某个对象后不能指向其他对象，但是所指向对象的内存是可以被修改的。</p>
-<h1 id="Package-包机制"><a href="#Package-包机制" class="headerlink" title="Package 包机制"></a>Package 包机制</h1><p>包名命名规范</p>
-<p>公司域名倒序+项目名+模块名+功能名；</p>
-<p>packge.com.google.javase.ui.login//4个目录 目录之间使用.隔开</p>
-<p>一个包对应一个总目录</p>
-<p>包的作用 便于程序的管理</p>
-<p>不同包之间访问要加包名或者用import导入</p>
-<p>Import 类名</p>
-<p>Import 包名.*</p>
-<h1 id="访问控制权限修饰符"><a href="#访问控制权限修饰符" class="headerlink" title="访问控制权限修饰符"></a>访问控制权限修饰符</h1><p>1访问控制权限权限修饰符来控制元素的访问范围</p>
-<p>2 访问权限修饰符包括：</p>
-<p>   public  公开的，任何位置都可以使用</p>
-<p>   protected  同包 子类</p>
-<p>   缺省     同包</p>
-<p>   private    私有的，只能在本类中访问</p>
-<p>只希望子类使用，使用protected进行修饰</p>
-<p>修饰符范围</p>
-<p>Public&gt;protected&gt;缺省&gt;private</p>
-<p>类只能采用public和缺省的修饰符进行修饰。【内部类除外】</p>
-<p>内部类</p>
-<p>public voiduser(){</p>
-<p>public id(){//这就是内部类</p>
-<p>}</p>
-<p>}</p>
-
-    </article>
-    <!-- license  -->
+            <main class="main index-page">
     
-        <div class="license-wrapper">
-            <p>Author：<a href="http://yoursite.com">zhang zhitong</a>
-            <p>原文链接：<a href="http://yoursite.com/2019/04/12/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87/">http://yoursite.com/2019/04/12/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87/</a>
-            <p>发表日期：<a href="http://yoursite.com/2019/04/12/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87/">April 12th 2019, 1:31:30 am</a>
-            <p>更新日期：<a href="http://yoursite.com/2019/04/12/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87/">April 12th 2019, 1:31:30 am</a>
-            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/28/%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%E7%AC%94%E8%AE%B0/" >
+            
+                <span>《算法图解》笔记</span>
+        </a>
+        <div class="abstract-content">
+            《算法图解》笔记
+暂时没题目BFS 广度优先搜索（breadth-first search）
+又名：图算法
+应用领域：到XXX有路径吗？到XXX最短路径是什么？
+题目：
+
+查找我的人脉网 看有没有 名字m结尾的人？
+主要思路：
+使用python里的散列表（队列）先进先出
+使用另外一个数组放检查过的人
+关系网顺序无所谓
+12345678910111213141516171819202122232425262728293031from collections import dequeneighbor = &#123;&#125;                                ...
         </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "算法">算法</a>
+    
+</div>
+            
+        </div>
+    </article>
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/05/03/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%8B%E5%86%8C/" title= "正则表达式手册">
-                    <div class="nextTitle">正则表达式手册</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
-    
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -632,24 +466,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#This关键字"><span class="toc-number">1.</span> <span class="toc-text">This关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">1.1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#this应用在两个位置"><span class="toc-number">1.1.1.</span> <span class="toc-text">this应用在两个位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语法"><span class="toc-number">1.1.2.</span> <span class="toc-text">语法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#变量"><span class="toc-number">2.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类的继承"><span class="toc-number">3.</span> <span class="toc-text">类的继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#这里可以用到eclipse自动继承"><span class="toc-number">3.0.1.</span> <span class="toc-text">这里可以用到eclipse自动继承</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#方法重载-Overload"><span class="toc-number">4.</span> <span class="toc-text">方法重载 Overload</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么时候使用方法重载？"><span class="toc-number">4.0.1.</span> <span class="toc-text">什么时候使用方法重载？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法重载规范"><span class="toc-number">4.0.2.</span> <span class="toc-text">方法重载规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法重载和什么无关？"><span class="toc-number">4.0.3.</span> <span class="toc-text">方法重载和什么无关？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#方法覆盖-方法重写（Override-Overwrite）"><span class="toc-number">5.</span> <span class="toc-text">方法覆盖&#x2F;方法重写（Override&#x2F;Overwrite）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么时候使用方法重写？"><span class="toc-number">5.0.1.</span> <span class="toc-text">什么时候使用方法重写？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么条件满足情况下发生重载？"><span class="toc-number">5.0.2.</span> <span class="toc-text">什么条件满足情况下发生重载？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-number">5.0.3.</span> <span class="toc-text">注意</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多态-Polymorphism"><span class="toc-number">6.</span> <span class="toc-text">多态 Polymorphism</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#面向对象三大特征：封装、继承、多态"><span class="toc-number">6.0.0.1.</span> <span class="toc-text">面向对象三大特征：封装、继承、多态</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多态几个概念（必须先有继承关系）"><span class="toc-number">6.0.1.</span> <span class="toc-text">多态几个概念（必须先有继承关系）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Final关键字"><span class="toc-number">7.</span> <span class="toc-text">Final关键字</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Package-包机制"><span class="toc-number">8.</span> <span class="toc-text">Package 包机制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#访问控制权限修饰符"><span class="toc-number">9.</span> <span class="toc-text">访问控制权限修饰符</span></a></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1356,8 +1172,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
