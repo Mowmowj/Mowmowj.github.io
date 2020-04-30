@@ -346,6 +346,53 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/06/20/shell%E8%84%9A%E6%9C%AC%E4%B8%80%E9%94%AE%E7%94%9F%E6%88%90%E5%89%8D%E7%AB%AF%E6%96%87%E4%BB%B6/" >
+            
+                <span>shell脚本一键生成前端文件</span>
+        </a>
+        <div class="abstract-content">
+            作为一个程序员如果不会写脚本那么和搬砖有什么区别?
+细节Path作用
+我们在bash中输入一个命令时(ls\cp\demo)
+bash都会自动去$PATH中寻找对应的脚本文件
+如果找到了就执行
+使用type +命令
+可以查看寻找过程
+文件后缀其实对于机器毫无作用 只是为了双击的时候 指定用什么来打开
+不过可以方便查看属性
+linux中 可以指定打开
+vi 用vim打开
+open -a “google chrome” 路径  用谷歌打开
+最简单的小脚本
+touch demo.sh
+vi demo.sh
+vim:mkdir demo
+cd demo
+mkdir css jss
+touch i...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "shell">shell</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/06/19/JavaScript%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/" >
             
                 <span>JavaScript笔记整理</span>
@@ -673,53 +720,10 @@ test()方法符合返回true 不符...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/04/12/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87/" >
-            
-                <span>JavaSE重点笔记</span>
-        </a>
-        <div class="abstract-content">
-            
-This关键字概念this是java 关键字 意思：这个
-this是一个引用
-this是一个变量
-this保存了内存地址指向了自身
-this 保存在JVM堆内存中
-this应用在两个位置构造方法当中
-实例方法当中
-（在静态方法种无法使用this（因为没有对象的参与，静态方法是采用类名的方式调用）所以在静态方法中无法直接使用this
-在实例方法中可以用，因为调用实例方法的时候调用了对象。
-语法位于构造方法中第一行
-this（）通过当前的构造方法调用别的构造方法代码可以得到重复使用
-this.  主要用在实例方法中用以区分局部变量和实例变量，比如下面：
-int id 
-this id = ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaSE">JavaSE</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/page/2/">&amp;#60; PREV</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
+        <a class="extend prev" rel="prev" href="/archives/page/2/">&amp;#60; PREV</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/4/">NEXT &amp;#62;</a>
     </nav>
     
 </main>
@@ -1199,9 +1203,24 @@ this id = ...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 30
+        Total : 31
         </div>
         <!-- search  -->
         
@@ -1214,6 +1233,11 @@ this id = ...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href= "/2020/04/30/NodeJS/" >NodeJS学习笔记</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1481,6 +1505,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="书籍"><span class="iconfont-archer">&#xe60a;</span>书籍</span>
     
         <span class="sidebar-category-name" data-categories="算法"><span class="iconfont-archer">&#xe60a;</span>算法</span>
+    
+        <span class="sidebar-category-name" data-categories="NodeJS"><span class="iconfont-archer">&#xe60a;</span>NodeJS</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

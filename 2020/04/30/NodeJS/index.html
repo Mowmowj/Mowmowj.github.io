@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="zhang zhitong">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="zhang zhitong">
+    
+    <meta name="keywords" content="zzt,zzt-blog,Shelton-Z">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>NodeJS学习笔记 · SheltonZhang&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Shelton Zhang&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">NodeJS学习笔记</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Shelton Zhang's Studio.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            NodeJS学习笔记
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Kit">Kit</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">3.6k</span>Reading time: <span class="post-count reading-time">18 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/04/30</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="Koa"><a href="#Koa" class="headerlink" title="Koa"></a>Koa</h2><h2 id="复习ES6"><a href="#复习ES6" class="headerlink" title="复习ES6:"></a>复习ES6:</h2><h3 id="模板字符串："><a href="#模板字符串：" class="headerlink" title="模板字符串："></a>模板字符串：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">'zhangsan'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> age = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;name&#125;</span>的年龄是<span class="subst">$&#123;age&#125;</span>岁`</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="let-const-："><a href="#let-const-：" class="headerlink" title="let const ："></a>let const ：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a &#x3D; 2 ;</span><br><span class="line">let a &#x3D; 3;</span><br><span class="line">const b &#x3D; 4;</span><br></pre></td></tr></table></figure>
+
+<h3 id="属性简写："><a href="#属性简写：" class="headerlink" title="属性简写："></a>属性简写：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'zhansan'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = &#123;</span><br><span class="line"></span><br><span class="line">name  <span class="comment">//    相当于  name : name;</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法简写："><a href="#方法简写：" class="headerlink" title="方法简写："></a>方法简写：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'zhangsan'</span>;</span><br><span class="line"><span class="keyword">var</span> app = &#123;</span><br><span class="line">    name</span><br><span class="line">    run: ()&#123;  <span class="comment">//方法的简写</span></span><br><span class="line">        <span class="built_in">console</span>.log($&#123;<span class="keyword">this</span>.name&#125;会跑步)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">app.run</span><br></pre></td></tr></table></figure>
+
+<h3 id="箭头函数："><a href="#箭头函数：" class="headerlink" title="箭头函数："></a>箭头函数：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(()&#x3D;&gt;&#123;</span><br><span class="line">  console.log(&#39;执行&#39;)</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure>
+
+<h3 id="回调函数-获取-异步方法-里的-数据-："><a href="#回调函数-获取-异步方法-里的-数据-：" class="headerlink" title="回调函数(获取 异步方法 里的 数据)："></a>回调函数(获取 异步方法 里的 数据)：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">callback</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> name = <span class="string">'zhangsan'</span>;</span><br><span class="line">        <span class="keyword">get</span>(name)</span><br><span class="line">    &#125;,1000)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var <span class="keyword">get</span> = fucntion(data)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;</span><br><span class="line">	getData(<span class="keyword">get</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Promise："><a href="#Promise：" class="headerlink" title="Promise："></a>Promise：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>()</span><br><span class="line"></span><br><span class="line">promise(<span class="function"><span class="keyword">function</span> (<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> name = <span class="string">'zhangsan'</span>;</span><br><span class="line">        resolve(name);</span><br><span class="line">    &#125;,<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">promise.then(<span class="function">(<span class="params">data</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`我是<span class="subst">$&#123;data&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">////////////////////////////</span></span><br><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> name = <span class="string">'zhangsan'</span>;</span><br><span class="line">        <span class="comment">// resolve(name);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">Math</span>.random()&lt;<span class="number">0.5</span>)&#123;</span><br><span class="line">            resolve(name)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            reject(<span class="string">'失败'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">&#125;,<span class="number">1000</span>)</span><br><span class="line">  </span><br><span class="line">&#125;).then(<span class="function">(<span class="params">data</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="async-、await："><a href="#async-、await：" class="headerlink" title="async 、await："></a>async 、await：</h3><p>async </p>
+<p>是让 方法 变成异步</p>
+<p>让方法 变成了 promise对象</p>
+<p>await </p>
+<p>是等待 异步方法  执行完成    只能在异步方法里面使用</p>
+<p>await让异步方法 变成了 同步</p>
+<p>promise then方法获取asysnc里的数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="string">'data'</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = getData();</span><br><span class="line">p.then(<span class="function">(<span class="params">data</span>)=&gt;</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>用await 获取 async 里的数据：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'GOOOOOOOOOOOOOOGLE'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">point</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data =<span class="keyword">await</span> getData();<span class="comment">//这里 会同步执行 上面的异步方法 产生阻塞</span></span><br><span class="line">    <span class="built_in">console</span>.log(data)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">point()</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用await 处理 成功 函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//这里 getName返回的 是 promise  和 async  效果一样 所以 不用 async  也可以 使用await</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> name = <span class="string">'zhangsan'</span>;</span><br><span class="line">        <span class="comment">// resolve(name);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">Math</span>.random()&lt;<span class="number">15</span>)&#123;</span><br><span class="line">            resolve(name)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            reject(<span class="string">'失败'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">&#125;,<span class="number">1000</span>)</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fuck</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">var</span> data = <span class="keyword">await</span> getName();</span><br><span class="line">    <span class="built_in">console</span>.log(data) </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fuck()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="Koa-1"><a href="#Koa-1" class="headerlink" title="Koa"></a>Koa</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//安装koa</span></span><br><span class="line">npm install koa --save</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Koa-路由"><a href="#Koa-路由" class="headerlink" title="Koa 路由"></a>Koa 路由</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install koa-router --save</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>ctx是context<br>context 上下文的意思<br>context 包括request、response、body、state ·············</p>
+<p>router.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa =<span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> Router =<span class="built_in">require</span>(<span class="string">'koa-router'</span>);、</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app= <span class="keyword">new</span> Koa()</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">ctx是context</span></span><br><span class="line"><span class="comment">context 上下文的意思  </span></span><br><span class="line"><span class="comment">context 包括request,response,</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">	ctx.body=<span class="string">'首页'</span>;   <span class="comment">//返回数据  =res.writeHead(), res.end()</span></span><br><span class="line">	&#125;).get(<span class="string">'/news'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">    ctx.body=<span class="string">"这是一个 新闻页面"</span></span><br><span class="line">	&#125;).post(<span class="string">'/nav'</span>,(ctx)=&gt;&#123;</span><br><span class="line">    ctx.body=<span class="string">'nav'</span></span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">app.use(router.routes())   <span class="comment">//启动路由</span></span><br><span class="line">   .use(router.allowedMethods()) <span class="comment">//（可写可不写）作用：自动加响应头</span></span><br><span class="line">   .listen(<span class="number">3004</span>)</span><br><span class="line"></span><br><span class="line">   ;<span class="built_in">console</span>.log(<span class="string">'localhost:3004'</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Koa-路由get传值"><a href="#Koa-路由get传值" class="headerlink" title="Koa  路由get传值"></a>Koa  路由get传值</h2><p>通过 request 传值  接收方法 有两种：query 和 querystring</p>
+<p>query: 返回的是格式化好的参数对象</p>
+<p>query:返回的是请求字符串</p>
+<p>通过query来 get 传值 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/'</span>,<span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">    <span class="comment">//get 传值</span></span><br><span class="line">	ctx.body=<span class="string">'首页'</span>;   <span class="comment">//返回数据  =res.writeHead(), res.end()</span></span><br><span class="line"></span><br><span class="line">&#125;).get(<span class="string">'/news'</span>,(ctx)=&gt;&#123;</span><br><span class="line">    ctx.body=<span class="string">"这是一个 新闻页面"</span></span><br><span class="line">    <span class="built_in">console</span>.log(ctx.query) <span class="comment">/****最推荐******/</span>  获取url后参数</span><br><span class="line">    <span class="built_in">console</span>.log(ctx.querystring)</span><br><span class="line">    <span class="built_in">console</span>.log(ctx.request)</span><br><span class="line">    <span class="built_in">console</span>.log(ctx.url)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>动态路由：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/'</span>,<span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">    <span class="comment">//get 传值</span></span><br><span class="line">	ctx.body=<span class="string">'首页'</span>;   <span class="comment">//返回数据  =res.writeHead(), res.end()</span></span><br><span class="line"></span><br><span class="line">&#125;).get(<span class="string">'/news/:aid'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ctx.params);<span class="comment">//&#123;aid:'today'&#125;  获取动态路由返回值</span></span><br><span class="line">    ctx.body=<span class="string">"这是一个 新闻页面"</span></span><br><span class="line">    <span class="built_in">console</span>.log(ctx.query) <span class="comment">/****最推荐******/</span></span><br><span class="line">&#125;).get(<span class="string">'/news/:aid/:cid'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ctx.params);<span class="comment">//&#123;aid:'today' cid:'tomorrow'&#125;  获取动态路由返回值</span></span><br><span class="line">    ctx.body=<span class="string">"这是一个 新闻页面"</span></span><br><span class="line">    <span class="built_in">console</span>.log(ctx.query) <span class="comment">/****最推荐******/</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><h3 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h3><p>匹配路由之前或者匹配路由完成做的一系列的操作，我们就可以 把它叫做中间件。</p>
+<h3 id="功能："><a href="#功能：" class="headerlink" title="功能："></a>功能：</h3><ol>
+<li>执行任何代码。 </li>
+<li>修改请求和响应对象。 </li>
+<li>终结请求-响应循环。 </li>
+<li>调用堆栈中的下一个中间件</li>
+</ol>
+<h3 id="几种分类："><a href="#几种分类：" class="headerlink" title="几种分类："></a>几种分类：</h3><p>/中间件</p>
+<p>顺序:无论中间件写在哪里 都会先匹配 中间件 再去找路由</p>
+<p>路由找到后再去找错误处理</p>
+<p>而中间件之间是栈的方式顺序</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一类 应用级中间件</span></span><br><span class="line"><span class="comment">//作用：在匹配之前做的一些事情 </span></span><br><span class="line"><span class="comment">// 只有一个参数的时候 绑定 所有路由</span></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>());   <span class="comment">//所有路由匹配前打印日期</span></span><br><span class="line">    <span class="keyword">await</span> next();  <span class="comment">//当前中间件 匹配完成后继续向下 匹配</span></span><br><span class="line">    <span class="comment">//不写 next  匹配 到中间件 就不向下 继续匹配了</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//第二类 路由级中间件</span></span><br><span class="line"><span class="comment">// 作用：匹配到路由后继续向下匹配路由</span></span><br><span class="line">router.get(<span class="string">'/news'</span>,<span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">    ctx.body=<span class="string">'no 1'</span> </span><br><span class="line">    <span class="keyword">await</span> next()</span><br><span class="line">&#125;).get(<span class="string">'/news'</span>,<span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">    ctx.body=<span class="string">'no 2'</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第三类 错误处理中间件</span></span><br><span class="line"><span class="comment">// 错误处理是放在 应用中间件中  中间件方法执行后 路由方法匹配后，判断触发错误处理中间件</span></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>());  </span><br><span class="line">    <span class="keyword">await</span> next(); <span class="comment">//同步 阻塞 不加 await 一样</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (ctx.status==<span class="number">404</span>)&#123;</span><br><span class="line">        ctx.body=<span class="string">'404页面'</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'没啥错误'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="洋葱图："><a href="#洋葱图：" class="headerlink" title="洋葱图："></a>洋葱图：<img src="C:%5CUsers%5C46032%5CNutstore%5C.nutstore_dG9uZ2lnbGVzQGljbG91ZC5jb20=%5C%E6%88%91%E7%9A%84%E5%9D%9A%E6%9E%9C%E4%BA%91%5CKoa.assets%5C%E6%B4%8B%E8%91%B1%E5%9B%BE.jpg" alt="洋葱图"></h3><h3 id="中间件执行流程："><a href="#中间件执行流程：" class="headerlink" title="中间件执行流程："></a>中间件执行流程：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//12345</span></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>);   </span><br><span class="line">    <span class="keyword">await</span> next();  </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">5</span>)</span><br><span class="line">&#125;) </span><br><span class="line">app.use(<span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);   </span><br><span class="line">    <span class="keyword">await</span> next(); </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">&#125;) </span><br><span class="line"></span><br><span class="line"><span class="comment">//第二类 路由级中间件</span></span><br><span class="line"><span class="comment">// 作用：匹配到路由后继续向下匹配路由</span></span><br><span class="line">router.get(<span class="string">'/news'</span>,<span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">    ctx.body=<span class="string">'no 1'</span> </span><br><span class="line">    <span class="keyword">await</span> next()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="Koa中使用-ejs模板引擎"><a href="#Koa中使用-ejs模板引擎" class="headerlink" title="Koa中使用 ejs模板引擎"></a>Koa中使用 ejs模板引擎</h3><p>安装：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 安装 koa-views </span><br><span class="line">npm install --save koa-views </span><br><span class="line"><span class="number">2.</span> 安装 ejs </span><br><span class="line">npm install ejs --save</span><br></pre></td></tr></table></figure>
+
+<p>引入koa-views 配置中间件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> views = <span class="built_in">require</span>(<span class="string">'koa-views'</span>);</span><br><span class="line">app.use(views(<span class="string">'views'</span>, &#123; <span class="attr">map</span>: &#123;<span class="attr">html</span>: <span class="string">'ejs'</span> &#125;&#125;));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种配置方式</span></span><br><span class="line"><span class="comment">// app.use(views('views',&#123;</span></span><br><span class="line"><span class="comment">//     extension:'ejs'      //声明所用拓展模块 extension：拓展</span></span><br><span class="line"><span class="comment">//                         //这样配置 后缀必须是 ejs</span></span><br><span class="line"><span class="comment">// &#125;))</span></span><br></pre></td></tr></table></figure>
+
+<p>使用ejs：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa=<span class="built_in">require</span>(<span class="string">'koa'</span>),</span><br><span class="line">    router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)(),</span><br><span class="line">    views = <span class="built_in">require</span>(<span class="string">'koa-views'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app=<span class="keyword">new</span> Koa();</span><br><span class="line">      <span class="comment">//配置中间件</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.use(views(<span class="string">'views'</span>,&#123;</span><br><span class="line">    map:&#123;<span class="attr">html</span>:<span class="string">'ejs'</span>&#125;</span><br><span class="line">&#125;))</span><br><span class="line"><span class="comment">//第二种引入方式</span></span><br><span class="line"><span class="comment">// app.use(views('views',&#123;</span></span><br><span class="line"><span class="comment">//     extension:'ejs'      //声明所用拓展模块 extension：拓展</span></span><br><span class="line"><span class="comment">//                         //这样配置 后缀必须是 ejs</span></span><br><span class="line"><span class="comment">// &#125;))  </span></span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">    <span class="keyword">await</span> ctx.render(<span class="string">'index'</span>);</span><br><span class="line">&#125;).get(<span class="string">'/news'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">    <span class="keyword">let</span> arr=[<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>];  <span class="comment">//给模板传值</span></span><br><span class="line">    <span class="keyword">await</span> ctx.render(<span class="string">'news'</span>,&#123;</span><br><span class="line">        list:arr				</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line">app.use(router.routes());</span><br><span class="line">app.use(router.allowedMethods());</span><br><span class="line">app.listen(<span class="string">'3012'</span>,()=&gt;&#123;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'localhost:3012'</span>)</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>前端模板：</p>
+<p>&lt;%%&gt;  中间写js代码</p>
+<p>&lt;%=%&gt;   输出值</p>
+<p>&lt;%-%&gt;  输出 并渲染为html代码</p>
+<p>ejs判断语句:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="keyword">if</span>(<span class="literal">true</span>)&#123;%&gt;</span><br><span class="line">    &lt;div&gt;<span class="literal">true</span>&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;%&#125;else&#123;%&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div&gt;false&lt;/</span>div&gt;</span><br><span class="line">&lt;%&#125;%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>ejs循环语句:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;%<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;list.length;i++)&#123;%&gt;</span><br><span class="line">      &lt;li&gt; &lt;%=list[i]%&gt; &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;%&#125;%&gt;</span></span><br><span class="line"><span class="regexp">&lt;/u</span>l&gt;</span><br></pre></td></tr></table></figure>
+
+<p>ejs 引入外部模块：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;% include public/header.html %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>header.html</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2 <span class="class"><span class="keyword">class</span></span>=<span class="string">"title"</span>&gt;公用代码&lt;<span class="regexp">/h2&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>定义后台的全局变量：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">	ctx.state=&#123;</span><br><span class="line">	data:<span class="string">'public data'</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line">要用的话 直接去 html代码里用就完事了</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="koa-post传值"><a href="#koa-post传值" class="headerlink" title="koa  post传值"></a>koa  post传值</h2><h3 id="原生封装"><a href="#原生封装" class="headerlink" title="原生封装"></a>原生封装</h3><p>koapost.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)(),</span><br><span class="line">      Koa    = <span class="built_in">require</span>(<span class="string">'koa'</span>),</span><br><span class="line">      views  = <span class="built_in">require</span>(<span class="string">'koa-views'</span>),</span><br><span class="line">      common = <span class="built_in">require</span>(<span class="string">'./module/common.js'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> app.use(views(<span class="string">'views'</span>,&#123;<span class="attr">map</span>:&#123;<span class="attr">html</span>:<span class="string">'ejs'</span>&#125;&#125;))</span><br><span class="line"></span><br><span class="line"> app.use(<span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'middleware'</span>)</span><br><span class="line">    <span class="keyword">await</span> next()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">     router.get(<span class="string">'/'</span>,<span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">     <span class="keyword">await</span> ctx.render(<span class="string">'koapost'</span>)&#125;)</span><br><span class="line">     .post(<span class="string">'/doAdd'</span>,<span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">         <span class="keyword">const</span> data=<span class="keyword">await</span> common.getPostData(ctx);</span><br><span class="line">         <span class="built_in">console</span>.log(data)</span><br><span class="line">         ctx.body=data;</span><br><span class="line">     &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> app.use(router.routes())</span><br><span class="line">    .use(router.allowedMethods())</span><br><span class="line">    .listen(<span class="string">'4453'</span>,()=&gt;&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'localhost:4453'</span>);</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>common.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">exports.getPostData=<span class="function"><span class="keyword">function</span>(<span class="params">ctx</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve,reject</span>) </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> str=<span class="string">''</span>;</span><br><span class="line">            ctx.req.on(<span class="string">'data'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">                str+=d</span><br><span class="line">            &#125;)</span><br><span class="line">             ctx.req.on(<span class="string">'end'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">d</span>) </span>&#123;</span><br><span class="line">                resolve(str)</span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">catch</span>(err)&#123;</span><br><span class="line">            reject(d)</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="使用-koa-bodyparser中间件处理post"><a href="#使用-koa-bodyparser中间件处理post" class="headerlink" title="使用 koa-bodyparser中间件处理post"></a>使用 koa-bodyparser中间件处理post</h3><p>安装：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save koa-bodyparser</span><br></pre></td></tr></table></figure>
+
+<p>安装 引入配置 中间件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)(),</span><br><span class="line">      Koa    = <span class="built_in">require</span>(<span class="string">'koa'</span>),</span><br><span class="line">      views  = <span class="built_in">require</span>(<span class="string">'koa-views'</span>),</span><br><span class="line">      common = <span class="built_in">require</span>(<span class="string">'./module/common.js'</span>),</span><br><span class="line">      bodyParser = <span class="built_in">require</span>(<span class="string">'koa-bodyparser'</span>)</span><br><span class="line">      app    = <span class="keyword">new</span> Koa();</span><br><span class="line">      app.use(views(<span class="string">'views'</span>,&#123;<span class="attr">map</span>:&#123;<span class="attr">html</span>:<span class="string">'ejs'</span>&#125;&#125;))</span><br><span class="line">         .use(bodyParser());</span><br><span class="line">      router.get(<span class="string">'/'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">         <span class="keyword">await</span> ctx.render(<span class="string">'koapost'</span>);</span><br><span class="line">      &#125;);</span><br><span class="line">      router.post(<span class="string">'/doAdd'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            ctx.body = ctx.request.body;</span><br><span class="line">            <span class="built_in">console</span>.log(ctx.body);</span><br><span class="line"></span><br><span class="line">            </span><br><span class="line">      &#125;)</span><br><span class="line">app.use(router.routes())</span><br><span class="line">   .use(router.allowedMethods())</span><br><span class="line">   .listen(<span class="string">'4567'</span>,()=&gt;&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'loaclhost:4567'</span>)</span><br><span class="line">   </span><br><span class="line">   &#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="koa-static-静态资源处理"><a href="#koa-static-静态资源处理" class="headerlink" title="koa-static 静态资源处理"></a>koa-static 静态资源处理</h2><p>安装：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save koa-<span class="keyword">static</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">static</span> = <span class="built_in">require</span>(<span class="string">'koa-static'</span>),</span><br><span class="line">      app    = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      app.use(views(<span class="string">'views'</span>,&#123;<span class="attr">map</span>:&#123;<span class="attr">html</span>:<span class="string">'ejs'</span>&#125;&#125;))</span><br><span class="line">         .use(bodyParser())</span><br><span class="line">         .use(<span class="keyword">static</span>(<span class="string">'./static'</span>))<span class="comment">//相对路径</span></span><br><span class="line">	   <span class="comment">//.use(static(__dirnmae+'./static'))//绝对路径</span></span><br></pre></td></tr></table></figure>
+
+<p>前端模板 这么引入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"css/koapost.css"</span>&gt;</span></span><br><span class="line">//因为 前文指定了static目录 所以 他会 直接去staic 目录下寻找</span><br></pre></td></tr></table></figure>
+
+<h3 id="art-template："><a href="#art-template：" class="headerlink" title="art-template："></a>art-template：</h3><p>安装：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install art-template --save</span><br><span class="line">npm install koa-art-template --save</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)(),</span><br><span class="line">      Koa    = <span class="built_in">require</span>(<span class="string">'koa'</span>),</span><br><span class="line">	  render = <span class="built_in">require</span>(<span class="string">'koa-art-template'</span>),</span><br><span class="line">      app    = <span class="keyword">new</span> Koa(),</span><br><span class="line">	  path   = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line">     render(app,&#123;</span><br><span class="line">         root: path.join(__dirname,<span class="string">'view'</span>),</span><br><span class="line">         extname: <span class="string">'.html'</span>,<span class="comment">//后缀名</span></span><br><span class="line">         debug: process.env.NODE_ENV !== <span class="string">'production'</span></span><br><span class="line">         <span class="comment">//调试模式</span></span><br><span class="line">     &#125;)</span><br><span class="line"></span><br><span class="line">      router.get(<span class="string">'/'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">         <span class="keyword">await</span> ctx.render(<span class="string">'koapost'</span>);</span><br><span class="line">      &#125;);</span><br><span class="line">     </span><br><span class="line">      app.use(router.routes())</span><br><span class="line">         .use(router.allowedMethods())</span><br><span class="line">         .listen(<span class="string">'4547'</span>,()=&gt;&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'loaclhost:4547'</span>)</span><br><span class="line">         </span><br><span class="line">         &#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="koa-中使用cookies"><a href="#koa-中使用cookies" class="headerlink" title="koa 中使用cookies:"></a>koa 中使用cookies:</h2><h3 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h3><ol>
+<li>保存信息 ，访问同一个域实现数据共享</li>
+<li>浏览器历史记录</li>
+<li>猜你喜欢的功能  </li>
+<li>多页面数据传递 （购物车功能）</li>
+</ol>
+<h3 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h3><p>设置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.cookies.set(name,value,[options])</span><br></pre></td></tr></table></figure>
+
+<p>读取：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.cookies.get(name)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="options名称："><a href="#options名称：" class="headerlink" title="options名称："></a>options名称：</h3><table>
+<thead>
+<tr>
+<th>option name</th>
+<th>options value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>maxAge</td>
+<td>一个数字从Data.now()得到的毫秒数(相对时间)</td>
+</tr>
+<tr>
+<td>expires</td>
+<td>cookie过期的Date （绝对时间）</td>
+</tr>
+<tr>
+<td>path</td>
+<td>cookie  默认是’’/‘’</td>
+</tr>
+<tr>
+<td>domain</td>
+<td>cookie 域名</td>
+</tr>
+<tr>
+<td>secure</td>
+<td>安全cookie  默认false 设置为true 只允许https</td>
+</tr>
+<tr>
+<td>httpOnly</td>
+<td>是否只允许服务器访问cookie 默认是true</td>
+</tr>
+<tr>
+<td>overwrite</td>
+<td>布尔值，是否覆盖以前设置的同名的cookie默认是false</td>
+</tr>
+</tbody></table>
+<p>设置和读取 cookies</p>
+<p>e.g.</p>
+<p>cookie.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)(),</span><br><span class="line">      Koa    = <span class="built_in">require</span>(<span class="string">'koa'</span>),</span><br><span class="line">      app    = <span class="keyword">new</span> Koa(),</span><br><span class="line">      views  = <span class="built_in">require</span>(<span class="string">'koa-views'</span>);</span><br><span class="line">      app.use(views(<span class="string">'views'</span>,&#123;<span class="attr">map</span>:&#123;<span class="attr">html</span>:<span class="string">'ejs'</span>&#125;&#125;))</span><br><span class="line">      </span><br><span class="line">      router.get(<span class="string">'/'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">          ctx.cookies.set(<span class="string">'userinfo'</span>,<span class="string">'zhangsan'</span>,&#123;</span><br><span class="line">              maxAge: <span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>       <span class="comment">//一小时过期</span></span><br><span class="line">          &#125;)</span><br><span class="line">         <span class="keyword">await</span> ctx.render(<span class="string">'koapost'</span>);</span><br><span class="line">      &#125;).get(<span class="string">'/static'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">            <span class="keyword">const</span> user = ctx.cookies.get(<span class="string">'userinfo'</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(user);</span><br><span class="line">      &#125;).get(<span class="string">'/nav'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">            <span class="keyword">const</span> user = ctx.cookies.get(<span class="string">'userinfo'</span>);</span><br><span class="line">            ctx.body =<span class="string">'你好'</span>+user;</span><br><span class="line">      &#125;)</span><br><span class="line">     </span><br><span class="line">      app.use(router.routes())</span><br><span class="line">         .use(router.allowedMethods())</span><br><span class="line">         .listen(<span class="string">'4547'</span>,()=&gt;&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'loaclhost:4547'</span>)</span><br><span class="line">         </span><br><span class="line">         &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>正常直接这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)(),</span><br><span class="line">      Koa    = <span class="built_in">require</span>(<span class="string">'koa'</span>),</span><br><span class="line">      app    = <span class="keyword">new</span> Koa(),</span><br><span class="line">      views  = <span class="built_in">require</span>(<span class="string">'koa-views'</span>);</span><br><span class="line">      app.use(views(<span class="string">'views'</span>,&#123;<span class="attr">map</span>:&#123;<span class="attr">html</span>:<span class="string">'ejs'</span>&#125;&#125;))</span><br><span class="line">      </span><br><span class="line">      router.get(<span class="string">'/'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">          ctx.cookies.set(<span class="string">'userinfo'</span>,<span class="string">'zhangsan'</span>,&#123;</span><br><span class="line">              maxAge: <span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>       <span class="comment">//一小时过期</span></span><br><span class="line">          &#125;)</span><br><span class="line">         <span class="keyword">await</span> ctx.render(<span class="string">'koapost'</span>);</span><br><span class="line">      &#125;).get(<span class="string">'/static'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">            <span class="keyword">const</span> user = ctx.cookies.get(<span class="string">'userinfo'</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(user);</span><br><span class="line">      &#125;).get(<span class="string">'/nav'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">            <span class="keyword">const</span> user = ctx.cookies.get(<span class="string">'userinfo'</span>);</span><br><span class="line">            ctx.body =<span class="string">'你好'</span>+user;</span><br><span class="line">      &#125;)</span><br><span class="line">     </span><br><span class="line">      app.use(router.routes())</span><br><span class="line">         .use(router.allowedMethods())</span><br><span class="line">         .listen(<span class="string">'4547'</span>,()=&gt;&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'loaclhost:4547'</span>)</span><br><span class="line">         </span><br><span class="line">         &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>其他参数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)(),</span><br><span class="line">      Koa    = <span class="built_in">require</span>(<span class="string">'koa'</span>),</span><br><span class="line">      app    = <span class="keyword">new</span> Koa(),</span><br><span class="line">      views  = <span class="built_in">require</span>(<span class="string">'koa-views'</span>);</span><br><span class="line">      app.use(views(<span class="string">'views'</span>,&#123;<span class="attr">map</span>:&#123;<span class="attr">html</span>:<span class="string">'ejs'</span>&#125;&#125;))</span><br><span class="line">      </span><br><span class="line">      router.get(<span class="string">'/'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">          ctx.cookies.set(<span class="string">'userinfo'</span>,<span class="string">'zhangsan'</span>,&#123;</span><br><span class="line">              maxAge: <span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>,       <span class="comment">//一小时过期</span></span><br><span class="line">              expires:<span class="string">'2020-12-14'</span>,</span><br><span class="line">              path: <span class="string">'/nav'</span>,   <span class="comment">//只允许在nav路由访问</span></span><br><span class="line">              httpOnly:<span class="literal">true</span>, <span class="comment">//表示只有后端服务器可以访问 </span></span><br><span class="line">              <span class="comment">//secure:'true',</span></span><br><span class="line">              <span class="comment">//domain: '.baidu.com'; </span></span><br><span class="line"></span><br><span class="line">          &#125;)</span><br><span class="line">         <span class="keyword">await</span> ctx.render(<span class="string">'koapost'</span>);</span><br><span class="line">      &#125;).get(<span class="string">'/static'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">            <span class="keyword">const</span> user = ctx.cookies.get(<span class="string">'userinfo'</span>);</span><br><span class="line">            ctx.body =<span class="string">'你好'</span>+user;</span><br><span class="line">            <span class="built_in">console</span>.log(user);</span><br><span class="line">      &#125;).get(<span class="string">'/nav'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">            <span class="keyword">const</span> user = ctx.cookies.get(<span class="string">'userinfo'</span>);</span><br><span class="line">            ctx.body =<span class="string">'你好'</span>+user;</span><br><span class="line">      &#125;)</span><br><span class="line">     </span><br><span class="line">      app.use(router.routes())</span><br><span class="line">         .use(router.allowedMethods())</span><br><span class="line">         .listen(<span class="string">'4547'</span>,()=&gt;&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'loaclhost:4547'</span>)</span><br><span class="line">         </span><br><span class="line">         &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>使用中文：</p>
+<p>（使用 buffer base64转码）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)(),</span><br><span class="line">      Koa    = <span class="built_in">require</span>(<span class="string">'koa'</span>),</span><br><span class="line">      app    = <span class="keyword">new</span> Koa(),</span><br><span class="line">      views  = <span class="built_in">require</span>(<span class="string">'koa-views'</span>);</span><br><span class="line">      app.use(views(<span class="string">'views'</span>,&#123;<span class="attr">map</span>:&#123;<span class="attr">html</span>:<span class="string">'ejs'</span>&#125;&#125;))</span><br><span class="line">      </span><br><span class="line">      router.get(<span class="string">'/'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">          <span class="keyword">var</span> name = <span class="keyword">new</span> Buffer(<span class="string">'张三'</span>).toString(<span class="string">'base64'</span>);</span><br><span class="line">              ctx.cookies.set(<span class="string">'userinfo'</span>,name,&#123;</span><br><span class="line">              maxAge: <span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>,       <span class="comment">//一小时过期</span></span><br><span class="line">              <span class="comment">//expires:'2020-12-14',</span></span><br><span class="line">              <span class="comment">//path: '/',   //只允许在nav路由访问</span></span><br><span class="line">              <span class="comment">//httpOnly:true, //表示只有后端服务器可以访问 </span></span><br><span class="line">              <span class="comment">//secure:'true',</span></span><br><span class="line">              <span class="comment">//domain: '.baidu.com'; </span></span><br><span class="line">              &#125;)</span><br><span class="line">            <span class="comment">//   await ctx.render('koapost');</span></span><br><span class="line">              ctx.body=name;</span><br><span class="line">      &#125;).get(<span class="string">'/static'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">            <span class="keyword">const</span> user = ctx.cookies.get(<span class="string">'userinfo'</span>);</span><br><span class="line">            <span class="keyword">var</span> nam = <span class="keyword">new</span> Buffer(user,<span class="string">'base64'</span>).toString();</span><br><span class="line">            ctx.body =<span class="string">'你好'</span>+nam;</span><br><span class="line">            <span class="built_in">console</span>.log(user);</span><br><span class="line">      &#125;).get(<span class="string">'/nav'</span>,<span class="keyword">async</span> (ctx)=&gt;&#123;</span><br><span class="line">            <span class="keyword">const</span> user = ctx.cookies.get(<span class="string">'userinfo'</span>);</span><br><span class="line">            ctx.body =<span class="string">'你好'</span>+nam;</span><br><span class="line">      &#125;)</span><br><span class="line">     </span><br><span class="line">      app.use(router.routes())</span><br><span class="line">         .use(router.allowedMethods())</span><br><span class="line">         .listen(<span class="string">'4547'</span>,()=&gt;&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'loaclhost:4547'</span>)</span><br><span class="line">         </span><br><span class="line">         &#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="koa-session"><a href="#koa-session" class="headerlink" title="koa session"></a>koa session</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>session 是客户端访问服务器时 服务器 会生成一个 session   用来储存用户数据 在服务器端 key value 的形式   key 放在cookie中 返回给浏览器  下次 浏览器用cookie 中的key 来 读取 自己的数据</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install koa-session --save</span><br></pre></td></tr></table></figure>
+
+<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> session = <span class="built_in">require</span>(<span class="string">'koa-session'</span>);</span><br><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"> </span><br><span class="line">app.keys = [<span class="string">'some secret hurr'</span>];<span class="comment">//cookie的签名</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> CONFIG = &#123;</span><br><span class="line">  key: <span class="string">'koa.sess'</span>,   <span class="comment">//默认</span></span><br><span class="line">  maxAge: <span class="number">86400000</span>,  <span class="comment">//cookie 过期时间</span></span><br><span class="line">  autoCommit: <span class="literal">true</span>, <span class="comment">//默认</span></span><br><span class="line">  overwrite: <span class="literal">true</span>,   <span class="comment">//默认</span></span><br><span class="line">  httpOnly: <span class="literal">true</span>,   </span><br><span class="line">  signed: <span class="literal">true</span>, <span class="comment">//默认</span></span><br><span class="line">  rolling: <span class="literal">false</span>, <span class="comment">//每次重新设置</span></span><br><span class="line">  renew: <span class="literal">false</span>,   <span class="comment">//快到期了重新设置</span></span><br><span class="line">  secure: <span class="literal">false</span>,    <span class="comment">//https</span></span><br><span class="line">  sameSite: <span class="literal">null</span>, </span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">app.use(session(CONFIG, app));</span><br><span class="line"></span><br><span class="line">app.use(session(app));</span><br><span class="line">app.use(<span class="function">(<span class="params">ctx</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (ctx.path === <span class="string">'/favicon.ico'</span>) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">let</span> n = ctx.session.views || <span class="number">0</span>;</span><br><span class="line">  ctx.session.views = ++n;</span><br><span class="line">  ctx.body = n + <span class="string">' views'</span>;</span><br><span class="line">&#125;);</span><br><span class="line">app.listen(<span class="number">3000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'listening on port 3000'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//访问：</span></span><br><span class="line">router.get(<span class="string">'/'</span>,ctx=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ctx.session.username)</span><br><span class="line">&#125;).get(<span class="string">'/read'</span>,ctx=&gt;&#123;</span><br><span class="line">    ctx.session.username=<span class="string">'zhangsan'</span>;   <span class="comment">//设置值</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//ctx.session.username='zhangsan';   //设置值</span></span><br><span class="line"><span class="comment">//\ctx.session.username  //读取值</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Mongodb-compass"><a href="#Mongodb-compass" class="headerlink" title="Mongodb compass"></a>Mongodb compass</h2><p>数据库可视化管理工具</p>
+<h2 id="单例模式："><a href="#单例模式：" class="headerlink" title="单例模式："></a>单例模式：</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> getInstance()&#123;</span><br><span class="line">	<span class="keyword">if</span>(!Animal.instance)&#123;</span><br><span class="line">		Animal.instance = <span class="keyword">new</span> Animal()</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> Animal.instance</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">constructor</span>()&#123;</span><br><span class="line">	<span class="keyword">this</span>.connect()</span><br><span class="line">	&#125;</span><br><span class="line">	connect()&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'连接数据库'</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	find()&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'查找数据库'</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="封装数据库"><a href="#封装数据库" class="headerlink" title="封装数据库"></a>封装数据库</h2><p>config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app=&#123;</span><br><span class="line">    dbUrl :<span class="string">'mongodb://localhost:27017'</span>,</span><br><span class="line">    dbName :<span class="string">'Koa'</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports=app;</span><br></pre></td></tr></table></figure>
+
+<p>db.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MongodbClient = <span class="built_in">require</span>(<span class="string">'mongodb'</span>).MongoClient;</span><br><span class="line"><span class="keyword">const</span> Config = <span class="built_in">require</span>(<span class="string">'./config'</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Db</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>.connect();</span><br><span class="line">        useUnifiedTopology: <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    connect()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve,reject</span>) </span>&#123;</span><br><span class="line">            MongodbClient.connect(Config.dbUrl,&#123;<span class="attr">useUnifiedTopology</span>: <span class="literal">true</span>,<span class="attr">useNewUrlParser</span>:<span class="literal">true</span>&#125;,(err,client)=&gt;&#123;</span><br><span class="line">                <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                    reject(err)</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">const</span> db =client.db(Config.dbName);</span><br><span class="line">                    resolve(db)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    find(collection,json)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.connect().then(<span class="function">(<span class="params">db</span>)=&gt;</span>&#123;</span><br><span class="line">                <span class="keyword">var</span> result = db.collection(collection,).find(json)</span><br><span class="line">                result.toArray(<span class="function"><span class="keyword">function</span> (<span class="params">err,doc</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                        reject(err)</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        resolve(doc)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    insert()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myDb = <span class="keyword">new</span> Db();</span><br><span class="line">myDb.find(<span class="string">'name'</span>,&#123;&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">doc</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(doc);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="单例模式优化数据库"><a href="#单例模式优化数据库" class="headerlink" title="单例模式优化数据库"></a>单例模式优化数据库</h2><p>config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app=&#123;</span><br><span class="line">    dbUrl :<span class="string">'mongodb://localhost:27017'</span>,</span><br><span class="line">    dbName :<span class="string">'Koa'</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports=app;</span><br></pre></td></tr></table></figure>
+
+<p>db.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MongodbClient = <span class="built_in">require</span>(<span class="string">'mongodb'</span>).MongoClient;</span><br><span class="line"><span class="keyword">const</span> Config = <span class="built_in">require</span>(<span class="string">'./config'</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Db</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> getInstance()&#123;   <span class="comment">//单例模式：优化 多次实例化只实例化一次</span></span><br><span class="line">        <span class="keyword">if</span> (!Db.instance) &#123;</span><br><span class="line">            Db.instance=<span class="keyword">new</span> Db()</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">            <span class="keyword">return</span> Db.instance</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">        <span class="keyword">this</span>.dbClient=<span class="string">''</span>;</span><br><span class="line">        <span class="keyword">this</span>.connect();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    connect()&#123;</span><br><span class="line">        <span class="keyword">let</span> that=<span class="keyword">this</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(!that.dbClient)&#123; <span class="comment">//多次操作只连接一次 数据库</span></span><br><span class="line">            MongodbClient.connect(Config.dbUrl,&#123;<span class="attr">useUnifiedTopology</span>: <span class="literal">true</span>,<span class="attr">useNewUrlParser</span>:<span class="literal">true</span>&#125;,(err,client)=&gt;&#123;</span><br><span class="line">                <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                    reject(err)</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">const</span> db =client.db(Config.dbName);</span><br><span class="line">                    resolve(db)                    </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                resolve(that.dbClient)</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    find(collection,json)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.connect().then(<span class="function">(<span class="params">db</span>)=&gt;</span>&#123;</span><br><span class="line">                <span class="keyword">var</span> result = db.collection(collection).find(json)</span><br><span class="line">                result.toArray(<span class="function"><span class="keyword">function</span> (<span class="params">err,doc</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                        reject(err)</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        resolve(doc)   </span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    insert(collection,json)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.connect().then(<span class="function">(<span class="params">db</span>)=&gt;</span>&#123;</span><br><span class="line">                db.collection(collection).insertOne(json,(err,data)=&gt;&#123;</span><br><span class="line">                    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                       reject(err)</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        <span class="built_in">console</span>.log(<span class="string">'insert success'</span>);                        </span><br><span class="line">                       resolve(data)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    update(collection,json,json1)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.connect().then(<span class="function">(<span class="params">db</span>)=&gt;</span>&#123;</span><br><span class="line">                db.collection(collection).updateOne(json,&#123;<span class="attr">$set</span>:json1&#125;,(err,data)=&gt;&#123;</span><br><span class="line">                    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                       reject(err)</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        <span class="built_in">console</span>.log(<span class="string">'Updata success'</span>);                        </span><br><span class="line">                       resolve(data)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports=Db.getInstance();</span><br><span class="line"></span><br><span class="line"><span class="comment">//     const myDb = new Db();</span></span><br><span class="line"><span class="comment">//     myDb.find('name',&#123;&#125;).then(function (doc) &#123;&#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     const myDb2 = Db.getInstance()</span></span><br><span class="line"><span class="comment">//     myDb2.find('admin',&#123;&#125;).then(function (doc) &#123;&#125;)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> db = Db.getInstance()</span><br><span class="line">    db.update(<span class="string">'name'</span>,&#123;<span class="string">'name'</span>:<span class="string">'talor'</span>&#125;,&#123;<span class="string">'name'</span>:<span class="string">'swift'</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>Author：<a href="http://yoursite.com">zhang zhitong</a>
+            <p>原文链接：<a href="http://yoursite.com/2020/04/30/NodeJS/">http://yoursite.com/2020/04/30/NodeJS/</a>
+            <p>发表日期：<a href="http://yoursite.com/2020/04/30/NodeJS/">April 30th 2020, 9:27:16 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2020/04/30/NodeJS/">April 30th 2020, 9:27:16 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/03/29/leetcode%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%85%B8%E5%9E%8B%E9%A2%98/" title= "leetcode 数据结构典型题">
+                    <div class="prevTitle">leetcode 数据结构典型题</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:tongigle@icloud.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/Mowmowj" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Koa"><span class="toc-number">1.</span> <span class="toc-text">Koa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复习ES6"><span class="toc-number">2.</span> <span class="toc-text">复习ES6:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模板字符串："><span class="toc-number">2.1.</span> <span class="toc-text">模板字符串：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#let-const-："><span class="toc-number">2.2.</span> <span class="toc-text">let const ：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性简写："><span class="toc-number">2.3.</span> <span class="toc-text">属性简写：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法简写："><span class="toc-number">2.4.</span> <span class="toc-text">方法简写：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#箭头函数："><span class="toc-number">2.5.</span> <span class="toc-text">箭头函数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回调函数-获取-异步方法-里的-数据-："><span class="toc-number">2.6.</span> <span class="toc-text">回调函数(获取 异步方法 里的 数据)：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise："><span class="toc-number">2.7.</span> <span class="toc-text">Promise：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#async-、await："><span class="toc-number">2.8.</span> <span class="toc-text">async 、await：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Koa-1"><span class="toc-number">3.</span> <span class="toc-text">Koa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Koa-路由"><span class="toc-number">4.</span> <span class="toc-text">Koa 路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">5.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Koa-路由get传值"><span class="toc-number">6.</span> <span class="toc-text">Koa  路由get传值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中间件"><span class="toc-number">7.</span> <span class="toc-text">中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念："><span class="toc-number">7.1.</span> <span class="toc-text">概念：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#功能："><span class="toc-number">7.2.</span> <span class="toc-text">功能：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#几种分类："><span class="toc-number">7.3.</span> <span class="toc-text">几种分类：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#洋葱图："><span class="toc-number">7.4.</span> <span class="toc-text">洋葱图：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中间件执行流程："><span class="toc-number">7.5.</span> <span class="toc-text">中间件执行流程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Koa中使用-ejs模板引擎"><span class="toc-number">7.6.</span> <span class="toc-text">Koa中使用 ejs模板引擎</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#koa-post传值"><span class="toc-number">8.</span> <span class="toc-text">koa  post传值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原生封装"><span class="toc-number">8.1.</span> <span class="toc-text">原生封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-koa-bodyparser中间件处理post"><span class="toc-number">8.2.</span> <span class="toc-text">使用 koa-bodyparser中间件处理post</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#koa-static-静态资源处理"><span class="toc-number">9.</span> <span class="toc-text">koa-static 静态资源处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#art-template："><span class="toc-number">9.1.</span> <span class="toc-text">art-template：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#koa-中使用cookies"><span class="toc-number">10.</span> <span class="toc-text">koa 中使用cookies:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#作用："><span class="toc-number">10.1.</span> <span class="toc-text">作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语法："><span class="toc-number">10.2.</span> <span class="toc-text">语法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#options名称："><span class="toc-number">10.3.</span> <span class="toc-text">options名称：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#koa-session"><span class="toc-number">11.</span> <span class="toc-text">koa session</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-number">11.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">11.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引入"><span class="toc-number">11.3.</span> <span class="toc-text">引入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mongodb-compass"><span class="toc-number">12.</span> <span class="toc-text">Mongodb compass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式："><span class="toc-number">13.</span> <span class="toc-text">单例模式：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#封装数据库"><span class="toc-number">14.</span> <span class="toc-text">封装数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式优化数据库"><span class="toc-number">15.</span> <span class="toc-text">单例模式优化数据库</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 31
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/30</span><a class="archive-post-title" href= "/2020/04/30/NodeJS/" >NodeJS学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href= "/2020/03/29/leetcode%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%85%B8%E5%9E%8B%E9%A2%98/" >leetcode 数据结构典型题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/28</span><a class="archive-post-title" href= "/2020/03/28/%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%E7%AC%94%E8%AE%B0/" >《算法图解》笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/27</span><a class="archive-post-title" href= "/2020/03/27/%E4%BD%A0%E7%9A%84%E8%A1%80%E6%9D%A1%E7%AE%A1%E7%90%86%E5%99%A8VueX/" >你的血条管理器————VueX</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/25</span><a class="archive-post-title" href= "/2020/03/25/%E6%89%93%E5%AD%97%E7%BB%83%E4%B9%A0%E8%AE%B0%E5%BD%95%E8%B4%B4/" >打字练习记录贴</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/24</span><a class="archive-post-title" href= "/2020/03/24/Webpack%20Plugins%20Kit/" >Webpack Plugins Kit</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/23</span><a class="archive-post-title" href= "/2020/03/23/flex%E5%A4%A7%E6%B3%95%E5%A5%BD/" >flex大法好</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2020/03/09/%E6%97%A5%E5%BF%97%E6%98%93%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" >车主邦面试总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href= "/2020/03/04/vue.js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" >vue.js学习笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/29</span><a class="archive-post-title" href= "/2020/02/29/%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84HTTP%E8%AF%B7%E6%B1%82%E7%BB%8F%E5%8E%86%E4%BA%86%E5%93%AA%E4%BA%9B(%E7%A9%B6%E6%9E%81%E8%AF%A6%E7%BB%86%E7%89%88)/" >一次完整的HTTP请求经历了哪些?究极详细版</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/29</span><a class="archive-post-title" href= "/2020/02/29/JSONP%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" >浅谈JSONP的前世今生</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/29</span><a class="archive-post-title" href= "/2020/02/29/%E6%89%8B%E6%92%95AJAX/" >手撕AJAX</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/04</span><a class="archive-post-title" href= "/2020/02/04/COVID-19%E7%96%AB%E6%83%85%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9C%B0%E5%9B%BE%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" >COVID-19疫情大数据可视化地图项目总结</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/18</span><a class="archive-post-title" href= "/2019/07/18/ES6/" >ES6语法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/28</span><a class="archive-post-title" href= "/2019/06/28/http%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" >http缓存机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/28</span><a class="archive-post-title" href= "/2019/06/28/http%20get%E4%B8%8Epost%E5%8C%BA%E5%88%AB/" >http get和post区别?</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/28</span><a class="archive-post-title" href= "/2019/06/28/http%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B%E5%8F%8A%E6%8B%BF%E5%88%B0%E5%93%8D%E5%BA%94%E5%90%8E%E7%9A%84%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/" >http请求过程及拿到响应后的渲染过程？</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "/2019/06/27/http%E5%9F%BA%E7%A1%80/" >http基础知识</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/23</span><a class="archive-post-title" href= "/2019/06/23/ajax%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/" >ajax工作原理？</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/21</span><a class="archive-post-title" href= "/2019/06/21/%E5%B0%9D%E8%AF%95Node.js%E5%86%99%E8%84%9A%E6%9C%AC/" >用Node.js写脚本</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/20</span><a class="archive-post-title" href= "/2019/06/20/shell%E8%84%9A%E6%9C%AC%E4%B8%80%E9%94%AE%E7%94%9F%E6%88%90%E5%89%8D%E7%AB%AF%E6%96%87%E4%BB%B6/" >shell脚本一键生成前端文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/19</span><a class="archive-post-title" href= "/2019/06/19/JavaScript%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/" >JavaScript笔记整理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "/2019/06/13/JS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%20GC/" >JS垃圾回收机制 GC</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/12</span><a class="archive-post-title" href= "/2019/06/12/%E4%BB%80%E4%B9%88%E6%98%AFClosure/" >什么是Closure?</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/12</span><a class="archive-post-title" href= "/2019/06/12/%E4%BB%80%E4%B9%88%E6%98%AF%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0%20IIFE/" >什么是立即执行函数 IIFE?</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href= "/2019/06/06/CSS3%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2/" >CSS3媒体查询</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href= "/2019/06/04/CSS3%E9%80%89%E6%8B%A9%E5%99%A8/" >CSS选择器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href= "/2019/05/24/sessionStorage%E4%B8%8ElocalStorge%E4%BD%9C%E7%94%A8%E5%9F%9F/" >sessionStorage与localStorge作用域</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href= "/2019/05/23/HTML5%20%E6%96%B0%E7%89%B9%E6%80%A7/" >HTML新特性</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/03</span><a class="archive-post-title" href= "/2019/05/03/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%8B%E5%86%8C/" >正则表达式手册</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span><a class="archive-post-title" href= "/2019/04/12/JavaSE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87/" >JavaSE重点笔记</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="JavaSE"><span class="iconfont-archer">&#xe606;</span>JavaSE</span>
+    
+        <span class="sidebar-tag-name" data-tags="正则表达式"><span class="iconfont-archer">&#xe606;</span>正则表达式</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
+    
+        <span class="sidebar-tag-name" data-tags="CSS3"><span class="iconfont-archer">&#xe606;</span>CSS3</span>
+    
+        <span class="sidebar-tag-name" data-tags="HTML5"><span class="iconfont-archer">&#xe606;</span>HTML5</span>
+    
+        <span class="sidebar-tag-name" data-tags="ajax"><span class="iconfont-archer">&#xe606;</span>ajax</span>
+    
+        <span class="sidebar-tag-name" data-tags="http"><span class="iconfont-archer">&#xe606;</span>http</span>
+    
+        <span class="sidebar-tag-name" data-tags="HTML"><span class="iconfont-archer">&#xe606;</span>HTML</span>
+    
+        <span class="sidebar-tag-name" data-tags="shell"><span class="iconfont-archer">&#xe606;</span>shell</span>
+    
+        <span class="sidebar-tag-name" data-tags="Closure"><span class="iconfont-archer">&#xe606;</span>Closure</span>
+    
+        <span class="sidebar-tag-name" data-tags="IIFE"><span class="iconfont-archer">&#xe606;</span>IIFE</span>
+    
+        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
+    
+        <span class="sidebar-tag-name" data-tags="HTTP"><span class="iconfont-archer">&#xe606;</span>HTTP</span>
+    
+        <span class="sidebar-tag-name" data-tags="JSONP"><span class="iconfont-archer">&#xe606;</span>JSONP</span>
+    
+        <span class="sidebar-tag-name" data-tags="面试总结"><span class="iconfont-archer">&#xe606;</span>面试总结</span>
+    
+        <span class="sidebar-tag-name" data-tags="flex布局"><span class="iconfont-archer">&#xe606;</span>flex布局</span>
+    
+        <span class="sidebar-tag-name" data-tags="Kit"><span class="iconfont-archer">&#xe606;</span>Kit</span>
+    
+        <span class="sidebar-tag-name" data-tags="keybr"><span class="iconfont-archer">&#xe606;</span>keybr</span>
+    
+        <span class="sidebar-tag-name" data-tags="Vue"><span class="iconfont-archer">&#xe606;</span>Vue</span>
+    
+        <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Java"><span class="iconfont-archer">&#xe60a;</span>Java</span>
+    
+        <span class="sidebar-category-name" data-categories="Front-End"><span class="iconfont-archer">&#xe60a;</span>Front-End</span>
+    
+        <span class="sidebar-category-name" data-categories="JavaScript"><span class="iconfont-archer">&#xe60a;</span>JavaScript</span>
+    
+        <span class="sidebar-category-name" data-categories="ajax"><span class="iconfont-archer">&#xe60a;</span>ajax</span>
+    
+        <span class="sidebar-category-name" data-categories="网络知识"><span class="iconfont-archer">&#xe60a;</span>网络知识</span>
+    
+        <span class="sidebar-category-name" data-categories="命令行"><span class="iconfont-archer">&#xe60a;</span>命令行</span>
+    
+        <span class="sidebar-category-name" data-categories="Node-js"><span class="iconfont-archer">&#xe60a;</span>Node-js</span>
+    
+        <span class="sidebar-category-name" data-categories="HTTP"><span class="iconfont-archer">&#xe60a;</span>HTTP</span>
+    
+        <span class="sidebar-category-name" data-categories="面试总结"><span class="iconfont-archer">&#xe60a;</span>面试总结</span>
+    
+        <span class="sidebar-category-name" data-categories="flex"><span class="iconfont-archer">&#xe60a;</span>flex</span>
+    
+        <span class="sidebar-category-name" data-categories="Webpack"><span class="iconfont-archer">&#xe60a;</span>Webpack</span>
+    
+        <span class="sidebar-category-name" data-categories="keybr"><span class="iconfont-archer">&#xe60a;</span>keybr</span>
+    
+        <span class="sidebar-category-name" data-categories="Vue"><span class="iconfont-archer">&#xe60a;</span>Vue</span>
+    
+        <span class="sidebar-category-name" data-categories="书籍"><span class="iconfont-archer">&#xe60a;</span>书籍</span>
+    
+        <span class="sidebar-category-name" data-categories="算法"><span class="iconfont-archer">&#xe60a;</span>算法</span>
+    
+        <span class="sidebar-category-name" data-categories="NodeJS"><span class="iconfont-archer">&#xe60a;</span>NodeJS</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "zhang zhitong"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
