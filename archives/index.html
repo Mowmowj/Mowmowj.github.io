@@ -346,6 +346,37 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/05/31/%E9%9D%A2%E8%AF%95%E9%A2%98/" >
+            
+                <span>数组常考</span>
+        </a>
+        <div class="abstract-content">
+            复习数组12345678/*用递归的方式计算出1--&gt;100的总值*/            function sum(num) &#123;                if(num == 1) &#123;                    return 1;                &#125;                return num + sum(num - 1);            &#125;            console.log(sum(100))
+
+123//es6方法数组去重    arr=[...new Set(arr)];  ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/31</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "js">js</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/05/07/TypeScript%20Kit/" >
             
                 <span>TypeScript Kit</span>
@@ -670,10 +701,9 @@ React
 启动项目
 12yarn start  运行项目yarn build  生成项目
 
-
-
-Home.js 组件
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import React, &#123; Component &#...
+JSX一个就是一个React.createElement()
+React.createElement()是一个Symbol类型
+12345678910111213jsx:&lt;h1 className:&quot;1&quot;&gt;2&lt;&#x2F;h1&gt;&#x...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -685,54 +715,6 @@ Home.js 组件
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "React">React</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/09/%E6%97%A5%E5%BF%97%E6%98%93%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" >
-            
-                <span>车主邦面试总结</span>
-        </a>
-        <div class="abstract-content">
-            车主邦面试总结
-问:   你们学校学过C语言 可以用C写一个 数组去重嘛?
-
-答:  C语言大一学的,不太记得了,但是js也能写呀,有两种实现 第一:ES6的setarray,第二,可以用JS写 两层for循环里加一个if判断 slice去重
-
-问:数组的api哪些会改变原数组
-
-答:/slice 说错
-
-会改变:pop push reverse shift unshift sort splice 
-
-不会改变: slice concat join 
-
-问: jQuery 为什么可以实现 链式调用 ?
-
-答: 知道有这个 没看过源码
-
-问: v-if v-show 区别
-
-答:  v-s...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "面试总结">面试总结</a>
     
 </div>
             
@@ -1269,9 +1251,26 @@ Home.js 组件
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 33
+        Total : 34
         </div>
         <!-- search  -->
         
@@ -1284,6 +1283,11 @@ Home.js 组件
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/31</span><a class="archive-post-title" href= "/2020/05/31/%E9%9D%A2%E8%AF%95%E9%A2%98/" >数组常考</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1508,6 +1512,8 @@ Home.js 组件
     
         <span class="sidebar-tag-name" data-tags="TypeScipt"><span class="iconfont-archer">&#xe606;</span>TypeScipt</span>
     
+        <span class="sidebar-tag-name" data-tags="js"><span class="iconfont-archer">&#xe606;</span>js</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1576,6 +1582,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="React"><span class="iconfont-archer">&#xe60a;</span>React</span>
     
         <span class="sidebar-category-name" data-categories="TypeScript"><span class="iconfont-archer">&#xe60a;</span>TypeScript</span>
+    
+        <span class="sidebar-category-name" data-categories="面试"><span class="iconfont-archer">&#xe60a;</span>面试</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
