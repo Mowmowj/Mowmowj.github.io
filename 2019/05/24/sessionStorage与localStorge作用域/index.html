@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">209</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">451</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -401,7 +401,9 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="sessionStorage-localStorge作用域"><a href="#sessionStorage-localStorge作用域" class="headerlink" title="sessionStorage localStorge作用域"></a>sessionStorage localStorge作用域</h1><p>都是采用键值对的形式存储，两者都是通过setItem、getItem、removeItem来实现增删查改，而sessionStorage是会话存储，也就是说<br>当浏览器关闭之后sessionStorage也自动清空了，而localStorage不会</p>
+        <h1 id="sessionStorage-localStorge"><a href="#sessionStorage-localStorge" class="headerlink" title="sessionStorage localStorge"></a>sessionStorage localStorge</h1><p>sessionStorage会过期</p>
+<p>localStorage不会过期</p>
+<p>都是采用键值对的形式存储，两者都是通过setItem、getItem、removeItem来实现增删查改，而sessionStorage是会话存储，也就是说<br>当浏览器关闭之后sessionStorage也自动清空了，而localStorage不会</p>
 <p> 这里的作用域指的是：</p>
 <p>如何隔离开不同页面之间的localStorage（总不能在百度的页面上能读到腾讯的localStorage）。<br>localStorage只要在相同的协议、相同的主机名、相同的端口下，就能读取/修改到同一份localStorage数据。<br>sessionStorage比localStorage更严苛一点，除了协议、主机名、端口外，还要求在同一窗口（也就是浏览器的标签页）下<br>但是以下几种情况特殊:</p>
 <ul>
@@ -410,6 +412,22 @@ height:50vh;
 <li><p>同窗口里的iframe标签可以使用sessionstorage</p>
 </li>
 </ul>
+<p>sessionStroge和localStroge是HTML5 Web Stroge API提供的，可以方便的在web请求之间保存数据。</p>
+<p>共同点：都是保存在浏览器端，且都是同源的</p>
+<p>区别：</p>
+<p>1）、cookie在浏览器和服务器间来回传递</p>
+<p>​     sessionStroge和localStrige不会自动把数据发送给服务器，仅用于本地保存。</p>
+<p>​     cookie还有路径（path）的概念，可以限制cookie只属于某个路径下。</p>
+<p>2）、存储大小限制不同</p>
+<p>​     cookie数据不能超过4k</p>
+<p>​     sessionStroge和localStrige虽然也有限制，但可以达到5M以上</p>
+<p>3）、数据有效期不同</p>
+<p>​     cookie只在设置的cookie过期之前有效，即使窗口或浏览器关闭</p>
+<p>​     sessionStroge只在当前浏览器关闭之前有效</p>
+<p>​     localStroge不管浏览器关闭与否，数据永久保存</p>
+<p>4）、作用域不同</p>
+<p>​     cookie数据在所有同源窗口中都是共享的</p>
+<p>​    sessionStroge在不同浏览器窗口不共享，即使是同一个页面</p>
 
     </article>
     <!-- license  -->
@@ -555,7 +573,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sessionStorage-localStorge作用域"><span class="toc-number">1.</span> <span class="toc-text">sessionStorage localStorge作用域</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sessionStorage-localStorge"><span class="toc-number">1.</span> <span class="toc-text">sessionStorage localStorge</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -997,26 +1015,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 34
+        Total : 33
         </div>
         <!-- search  -->
         
@@ -1078,11 +1079,6 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/21</span><a class="archive-post-title" href= "/2020/03/21/ReactJS/" >React JS</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2020/03/09/%E6%97%A5%E5%BF%97%E6%98%93%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" >车主邦面试总结</a>
         </li>
     
     
@@ -1242,8 +1238,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="JSONP"><span class="iconfont-archer">&#xe606;</span>JSONP</span>
     
-        <span class="sidebar-tag-name" data-tags="面试总结"><span class="iconfont-archer">&#xe606;</span>面试总结</span>
-    
         <span class="sidebar-tag-name" data-tags="flex布局"><span class="iconfont-archer">&#xe606;</span>flex布局</span>
     
         <span class="sidebar-tag-name" data-tags="Kit"><span class="iconfont-archer">&#xe606;</span>Kit</span>
@@ -1308,8 +1302,6 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="Node-js"><span class="iconfont-archer">&#xe60a;</span>Node-js</span>
     
         <span class="sidebar-category-name" data-categories="HTTP"><span class="iconfont-archer">&#xe60a;</span>HTTP</span>
-    
-        <span class="sidebar-category-name" data-categories="面试总结"><span class="iconfont-archer">&#xe60a;</span>面试总结</span>
     
         <span class="sidebar-category-name" data-categories="flex"><span class="iconfont-archer">&#xe60a;</span>flex</span>
     
