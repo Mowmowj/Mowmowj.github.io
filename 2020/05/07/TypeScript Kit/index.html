@@ -490,7 +490,7 @@ height:50vh;
 
 
 <hr>
-<h2 id="Generics"><a href="#Generics" class="headerlink" title="Generics"></a>Generics</h2><p>Generrics’ significance is user for prevent this situation</p>
+<h2 id="Generics"><a href="#Generics" class="headerlink" title="Generics"></a>Generics</h2><p>Generrics’ significance is use  for prevent this situation</p>
 <p>one simple e.g</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//single generics</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">echo</span>&lt;<span class="title">T</span>&gt;(<span class="params">arg:T</span>):<span class="title">T</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> arg</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//doulbe generics type</span></span><br><span class="line">function swap&lt;T,U&gt;(tuple:[T,U]):[U,T]&#123;</span><br><span class="line">	<span class="keyword">return</span> [tuple[<span class="number">1</span>],tuple[<span class="number">0</span>]] </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> result =swap([<span class="string">'sss'</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//when you wanna use the untype parmes' methods in function</span></span><br><span class="line">function wasp&lt;T&gt;(param:T[]):T[]&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(param.length)</span><br><span class="line">    <span class="keyword">return</span> </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> arr = wasp([<span class="number">1</span>,<span class="number">123</span>,<span class="number">123</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//when u wanna use some type with a length methods</span></span><br><span class="line"></span><br><span class="line">interface Ilength&#123;</span><br><span class="line">    length:number;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arri</span>&lt;<span class="title">T</span> <span class="title">extends</span> <span class="title">Ilength</span>&gt;(<span class="params">params:T</span>):<span class="title">T</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(arr.length)</span><br><span class="line">    <span class="keyword">return</span> params</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> pops = arri([<span class="number">123123</span>])<span class="comment">// this params  can use all the type who has the //length's props</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//when u wanna use a active Function</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">private data=[];</span><br><span class="line"> push(item: T)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.data.push(item)</span><br><span class="line">    </span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"> pop(): T&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">this</span>.data.shift()</span><br><span class="line">    &#125;;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> queue1 = <span class="keyword">new</span> Queue&lt;number&gt;();</span><br><span class="line">queue1.pop()</span><br><span class="line">queue1.push(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">const</span> queue2 = <span class="keyword">new</span> Queue&lt;string&gt;();</span><br><span class="line">queue2.pop()</span><br><span class="line">queue2.push(<span class="string">'abc'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//when u wanna use a active interface</span></span><br><span class="line"></span><br><span class="line">interface Check&lt;T,U&gt;&#123;</span><br><span class="line">key:T;</span><br><span class="line">value:U;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> info:   Check&lt;string,number&gt; = &#123;<span class="attr">key</span>:<span class="string">'fdsf'</span>,<span class="attr">value</span>:<span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">let</span> arr: array&lt;number&gt;=[<span class="number">1</span>,<span class="number">23</span>] = <span class="keyword">let</span> arr: number[] = [<span class="number">1</span>,<span class="number">23</span>]</span><br></pre></td></tr></table></figure>
 
@@ -1111,9 +1111,26 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 33
+        Total : 34
         </div>
         <!-- search  -->
         
@@ -1126,6 +1143,11 @@ top:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href= "/2020/06/03/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" >设计模式</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1350,6 +1372,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="js"><span class="iconfont-archer">&#xe606;</span>js</span>
     
+        <span class="sidebar-tag-name" data-tags="设计模式"><span class="iconfont-archer">&#xe606;</span>设计模式</span>
+    
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
@@ -1418,6 +1442,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="TypeScript"><span class="iconfont-archer">&#xe60a;</span>TypeScript</span>
     
         <span class="sidebar-category-name" data-categories="面试"><span class="iconfont-archer">&#xe60a;</span>面试</span>
+    
+        <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
