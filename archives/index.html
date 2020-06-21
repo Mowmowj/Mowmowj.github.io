@@ -356,8 +356,10 @@
 简单版:
 12345ul.addEventListener('click', function(e)&#123; if(e.target.tagName.toLowerCase() === 'li')&#123; fn() // 执行某个函数 &#125; &#125;)
 
-高级版:
-123456789101112function delegate(element, eventType, selector, fn) &#123; 		   element.addEventListener(eventType, e =&gt; &#123; let el =e.targ...
+
+
+事件委托高级版:
+123456789101112function delegate(element, eventType, selector, fn) &#123; 		   element.addEventListener(eventType, e =&gt; &#123; let el =...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
